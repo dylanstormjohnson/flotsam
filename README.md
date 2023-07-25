@@ -1,2 +1,2 @@
-# project-3
+# flotsam
 A text-based adventure game!!
