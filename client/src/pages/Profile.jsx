@@ -7,10 +7,10 @@ const headContent = (
   </>
 );
 
-export default function Dashboard() {
+export default function Profile() {
   return (
-    <Page isProtected={true} headContent={headContent}>
-      <div>Dashboard</div>
+    <Page isProtected={false} headContent={headContent}>
+      <div>My Profile</div>
     </Page>
   );
 }

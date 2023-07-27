@@ -12,6 +12,10 @@ import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from "react-router-dom";
 import AllRoutes from "./pages/AllRoutes";
 import Auth from "./components/Auth";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css"
+
+
 
 const httpLink = createHttpLink({
   uri: "/graphql",
