@@ -31,6 +31,7 @@ export default function Page({
   isProtected = false,
   headContent = defaultHeadContent,
   children,
+  className
 }) {
   const { isAuthenticated } = useSelector(getUser());
 
@@ -39,7 +40,7 @@ export default function Page({
       <Helmet>{headContent}</Helmet>
       <Header />
       <div style={styles.container}>
-        <main style={styles.main}>
+        <main style={styles.main} className={className}>
           {isProtected && !isAuthenticated ? <div>Unauthorized</div> : children}
         </main>
         <Footer />

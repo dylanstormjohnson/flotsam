@@ -1,0 +1,25 @@
+@font-face {
+  font-family: myLogoFont;
+  src: url(./assets/pokemon/PokemonHollow.ttf);
+}
+
+.logo {
+  font-family: myLogoFont;
+  color: white;
+  font-size: 45px;
+  
+}
+.authContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  margin-top: 40px;
+}
+.authForm {
+  width: 40%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
