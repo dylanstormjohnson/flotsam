@@ -1,4 +1,5 @@
 import Page from "../components/Page";
+import ProfileStories from "../components/ProfileStories";
 
 const headContent = (
   <>
@@ -10,9 +11,9 @@ const headContent = (
 export default function Stories() {
   return (
     <Page isProtected={false} headContent={headContent}>
-      <div>Stories</div>
-      <div class='roomContainer'>
-        <img src="./assets/images/Logo/Flotsam_Background_Image.png" alt="Logo" id="gameSpace" user_id="{{user_id}}" class=""></img>
+      <div className="profileStories">
+        <h1>Stories Completed</h1>
+        <ProfileStories />
       </div>
     </Page>
   );

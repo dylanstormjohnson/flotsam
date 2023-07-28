@@ -60,7 +60,7 @@ export default function Header() {
         )}
         {!isAuthenticated && (
           <Link to="/signup">
-            <Button style={styles.button}>Sign Up/Login</Button>
+            <Button style={styles.button}>Sign Up / Sign In</Button>
           </Link>
         )}
       </div>
