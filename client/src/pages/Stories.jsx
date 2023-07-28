@@ -11,6 +11,9 @@ export default function Stories() {
   return (
     <Page isProtected={false} headContent={headContent}>
       <div>Stories</div>
+      <div class='roomContainer'>
+        <img src="./assets/images/Logo/Flotsam_Background_Image.png" alt="Logo" id="gameSpace" user_id="{{user_id}}" class=""></img>
+      </div>
     </Page>
   );
 }
