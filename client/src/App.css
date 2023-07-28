@@ -39,6 +39,14 @@
   gap: 10px;
 }
 
+.profileStories {
+  padding: 10px;
+}
+.profileStories > div {
+  display: flex;
+  gap: 10px;
+}
+
 footer {
   padding: 10px 10%;
   color: white;
