@@ -6,9 +6,24 @@
 .logo {
   font-family: myLogoFont;
   color: white;
-  font-size: 45px;
-  
+  font-size: 25px;
 }
+
+.homeContainer {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url(./assets/BG1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center;
+  width: 100%;
+  height: 40%;
+  margin: auto;
+}
+
 .authContainer {
   display: flex;
   justify-content: center;
@@ -22,4 +37,18 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+footer {
+  padding: 10px 10%;
+  color: white;
+  background-color: #003559;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer img {
+  width: 40px;
 }

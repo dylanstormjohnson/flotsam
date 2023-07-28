@@ -12,7 +12,7 @@ import Button from "react-bootstrap/Button";
 
 const headContent = (
   <>
-    <title>Change Me! - Sign Up</title>
+    <title>FlotSam - Sign Up</title>
     <meta
       name="description"
       content="Sign Up page for Project-3 Starter Code."
