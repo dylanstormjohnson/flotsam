@@ -13,9 +13,9 @@ import { BrowserRouter } from "react-router-dom";
 import AllRoutes from "./pages/AllRoutes";
 import Auth from "./components/Auth";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css"
+import "./App.css";
 
-
+import { createUploadLink } from "apollo-upload-client";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -33,6 +33,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
+  //link: createUploadLink(),
   cache: new InMemoryCache(),
 });
 

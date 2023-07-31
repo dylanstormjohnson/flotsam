@@ -47,6 +47,9 @@ export default function Header() {
       <div style={styles.buttonDiv}>
         {isAuthenticated ? (
           <>
+            <Link to="/gameplay">
+              <Button style={styles.button}>Play</Button>
+            </Link>
             <Link to="/stories">
               <Button style={styles.button}>Stories</Button>
             </Link>

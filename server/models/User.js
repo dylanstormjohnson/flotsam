@@ -20,7 +20,10 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-      trim: true,
+    },
+    bio: {
+      type: String,
+      default: "Some bio",
     },
     createdAt: {
       type: Date,
