@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
+import { useMutation } from "@apollo/client";
+import { UPDATE_USER } from "../graphql/mutations";
+import { useDispatch, useSelector } from "react-redux";
+import AuthService from "../utils/auth";
+import { getUser, setAuthenticatedUser } from "../redux/slices/userSlice";
 
 const UpdateProfile = () => {
-  const [firstName, setFirstName] = useState("Noemi");
-  const [lastName, setLastName] = useState("Couch");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [bio, setBio] = useState("");
   const [err, setErr] = useState("");
+
+  const { userData } = useSelector(getUser());
+  const dispatch = useDispatch();
+  const [updateUser, { loading }] = useMutation(UPDATE_USER);
+
+  useEffect(() => {
+    setFirstName(userData.firstName);
+    setLastName(userData.lastName);
+    setBio(userData.bio);
+  }, []);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -15,8 +30,24 @@ const UpdateProfile = () => {
 
     if (!firstName || !lastName) return setErr("No field should be empty");
 
-    console.log(firstName, lastName, bio);
+    const info = { id: userData._id, firstName, lastName, bio };
+    console.log("INFO: ", info);
+
     // call backend to update profile
+    try {
+      // Execute mutation and pass in defined parameter data as variables
+      const { data } = await updateUser({
+        variables: info,
+      });
+
+      console.log("DATA: ", data);
+      // call redux set auth func
+      dispatch(setAuthenticatedUser(data.updateUser.user));
+      AuthService.login(data.updateUser.token);
+    } catch (err) {
+      setErr(err.message);
+      console.log("ERROR: ", err);
+    }
   };
 
   return (
@@ -41,12 +72,18 @@ const UpdateProfile = () => {
       />
       <Form.Control
         value={bio}
-        onChange={(e) => setBio(e.target.value.trim())}
+        onChange={(e) => setBio(e.target.value)}
         as="textarea"
         rows={3}
         placeholder="some bio"
       />
-      <Button type="submit">Update Profile</Button>
+      {loading ? (
+        <Button type="submit" disabled={true}>
+          Loading...
+        </Button>
+      ) : (
+        <Button type="submit">Update Profile</Button>
+      )}
     </form>
   );
 };

@@ -9,6 +9,7 @@ export const LOGIN_USER = gql`
         firstName
         lastName
         email
+        bio
         createdAt
         updatedAt
       }
@@ -35,6 +36,29 @@ export const ADD_USER = gql`
         firstName
         lastName
         email
+        bio
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+
+export const UPDATE_USER = gql`
+  mutation updateUser(
+    $id: String!
+    $firstName: String
+    $lastName: String
+    $bio: String
+  ) {
+    updateUser(id: $id, firstName: $firstName, lastName: $lastName, bio: $bio) {
+      token
+      user {
+        _id
+        firstName
+        lastName
+        email
+        bio
         createdAt
         updatedAt
       }

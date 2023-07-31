@@ -47,6 +47,25 @@ const resolvers = {
 
       return { token, user };
     },
+    updateUser: async (parent, { id, firstName, lastName, bio }) => {
+      const user = await User.findById(id);
+
+      if (user) {
+        if (firstName) user.firstName = firstName;
+        if (lastName) user.lastName = lastName;
+        if (bio) user.bio = bio;
+        // if (password) user.password = password;
+
+        const updatedUser = await user.save();
+        console.log(updatedUser);
+
+        const token = signToken(updatedUser);
+
+        return { token, user: updatedUser };
+      } else {
+        throw new AuthenticationError("User not found");
+      }
+    },
   },
 };
 
