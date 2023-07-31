@@ -72,3 +72,9 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+
+export const UPDATE_PHOTO = gql`
+  mutation updatePhoto($file: Upload) {
+    updatePhoto(file: $file)
+  }
+`;

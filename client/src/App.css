@@ -53,6 +53,13 @@
   margin: 10%;
 }
 
+.profileImg {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 100px;
+}
+
 footer {
   padding: 10px 10%;
   color: white;
