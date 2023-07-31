@@ -13,6 +13,7 @@ const UpdateProfile = () => {
   const [lastName, setLastName] = useState("");
   const [bio, setBio] = useState("");
   const [err, setErr] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
 
   const { userData } = useSelector(getUser());
   const dispatch = useDispatch();
@@ -27,11 +28,11 @@ const UpdateProfile = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     setErr("");
+    setSuccessMsg("");
 
     if (!firstName || !lastName) return setErr("No field should be empty");
 
     const info = { id: userData._id, firstName, lastName, bio };
-    console.log("INFO: ", info);
 
     // call backend to update profile
     try {
@@ -40,10 +41,10 @@ const UpdateProfile = () => {
         variables: info,
       });
 
-      console.log("DATA: ", data);
       // call redux set auth func
       dispatch(setAuthenticatedUser(data.updateUser.user));
       AuthService.login(data.updateUser.token);
+      setSuccessMsg("Successfully Updated Profile");
     } catch (err) {
       setErr(err.message);
       console.log("ERROR: ", err);
@@ -56,6 +57,11 @@ const UpdateProfile = () => {
       {err && (
         <Alert key="danger" variant="danger">
           {err}
+        </Alert>
+      )}
+      {successMsg && (
+        <Alert key="success" variant="success">
+          {successMsg}
         </Alert>
       )}
       <Form.Control

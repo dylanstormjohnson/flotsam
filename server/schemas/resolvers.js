@@ -47,14 +47,14 @@ const resolvers = {
 
       return { token, user };
     },
-    updateUser: async (parent, { id, firstName, lastName, bio }) => {
+    updateUser: async (parent, { id, firstName, lastName, bio, password }) => {
       const user = await User.findById(id);
 
       if (user) {
         if (firstName) user.firstName = firstName;
         if (lastName) user.lastName = lastName;
         if (bio) user.bio = bio;
-        // if (password) user.password = password;
+        if (password) user.password = password;
 
         const updatedUser = await user.save();
         console.log(updatedUser);

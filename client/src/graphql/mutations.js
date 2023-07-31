@@ -50,8 +50,15 @@ export const UPDATE_USER = gql`
     $firstName: String
     $lastName: String
     $bio: String
+    $password: String
   ) {
-    updateUser(id: $id, firstName: $firstName, lastName: $lastName, bio: $bio) {
+    updateUser(
+      id: $id
+      firstName: $firstName
+      lastName: $lastName
+      bio: $bio
+      password: $password
+    ) {
       token
       user {
         _id

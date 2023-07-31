@@ -62,6 +62,7 @@ const typeDefs = gql`
       firstName: String
       lastName: String
       bio: String
+      password: String
     ): Auth
   }
 `;
