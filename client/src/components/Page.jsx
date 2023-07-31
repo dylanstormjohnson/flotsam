@@ -41,7 +41,11 @@ export default function Page({
       <Header />
       <div style={styles.container}>
         <main style={styles.main} className={className}>
-          {isProtected && !isAuthenticated ? <div>Unauthorized</div> : children}
+          {isProtected && !isAuthenticated ? (
+            <div className="unauth">Unauthorized</div>
+          ) : (
+            children
+          )}
         </main>
         <Footer />
       </div>

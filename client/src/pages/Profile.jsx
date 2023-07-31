@@ -16,7 +16,7 @@ export default function Profile() {
   return (
     <Page
       className="authContainer"
-      isProtected={false}
+      isProtected
       headContent={headContent}
     >
       <UpdatePhoto />

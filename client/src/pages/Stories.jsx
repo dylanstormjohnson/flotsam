@@ -10,7 +10,7 @@ const headContent = (
 
 export default function Stories() {
   return (
-    <Page isProtected={false} headContent={headContent}>
+    <Page isProtected headContent={headContent}>
       <div className="profileStories">
         <h1>Stories Completed</h1>
         <ProfileStories />
