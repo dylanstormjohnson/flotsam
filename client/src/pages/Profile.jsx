@@ -3,7 +3,8 @@ import UpdatePhoto from "../components/UpdatePhoto";
 import UpdateProfile from "../components/UpdateProfile";
 import UpdatePassword from "../components/UpdatePassword";
 import ProfileStories from "../components/ProfileStories";
-
+import { useSelector, useDispatch } from "react-redux";
+import { getUser } from "../redux/slices/userSlice";
 const headContent = (
   <>
     <title>FlotSam - Profile</title>
@@ -15,7 +16,7 @@ export default function Profile() {
   return (
     <Page
       className="authContainer"
-      isProtected={false}
+      isProtected
       headContent={headContent}
     >
       <UpdatePhoto />

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import AuthServices from "../utils/auth";
-import { useSelector } from "react-redux";
-import { getUser } from "../redux/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAuthenticatedUser, getUser } from "../redux/slices/userSlice";
 import Button from "react-bootstrap/Button";
 
 const styles = {
@@ -32,8 +32,10 @@ const styles = {
 
 export default function Header() {
   const { isAuthenticated } = useSelector(getUser());
+  const dispatch = useDispatch();
 
   const handleLogout = (e) => {
+    dispatch(deleteAuthenticatedUser());
     AuthServices.logout();
   };
 
@@ -43,22 +45,23 @@ export default function Header() {
         <h1 className="logo">FlotSam</h1>
       </Link>
       <div style={styles.buttonDiv}>
-        <Link to="/stories">
-          <Button style={styles.button}>Stories</Button>
-        </Link>
-        <Link to="/profile">
-          <Button style={styles.button}>Profile</Button>
-        </Link>
-        {isAuthenticated && (
-          <Button
-            variant="success"
-            onClick={handleLogout}
-            style={styles.button}
-          >
-            Logout
-          </Button>
-        )}
-        {!isAuthenticated && (
+        {isAuthenticated ? (
+          <>
+            <Link to="/stories">
+              <Button style={styles.button}>Stories</Button>
+            </Link>
+            <Link to="/profile">
+              <Button style={styles.button}>Profile</Button>
+            </Link>
+            <Button
+              variant="success"
+              onClick={handleLogout}
+              style={styles.button}
+            >
+              Logout
+            </Button>
+          </>
+        ) : (
           <Link to="/signup">
             <Button style={styles.button}>Sign Up / Sign In</Button>
           </Link>

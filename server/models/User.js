@@ -22,7 +22,6 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
-    playedStories: [],
     createdAt: {
       type: Date,
       default: Date.now,

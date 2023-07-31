@@ -1,24 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { empty } from "@apollo/client";
+import { createSlice } from "@reduxjs/toolkit";
+
+const emptyUser = {
+  id: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  createdAt: "",
+  updatedAt: "",
+};
 
 const initialState = {
-  userData: {
-    id: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    createdAt: '',
-    updatedAt: ''
-  },
+  userData: emptyUser,
   isAuthenticated: false,
-}
+};
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     setAuthenticatedUser: (state, action) => {
       const userObj = {
-        ...action.payload.data,
+        ...action.payload,
       };
 
       delete userObj.password;
@@ -27,14 +30,17 @@ export const userSlice = createSlice({
       state.userData = userObj;
       state.isAuthenticated = true;
     },
+    deleteAuthenticatedUser: (state) => {
+      state.userData = emptyUser;
+      state.isAuthenticated = false;
+    },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { setAuthenticatedUser } = userSlice.actions
+export const { setAuthenticatedUser, deleteAuthenticatedUser } =
+  userSlice.actions;
 
-export const getUser = () => (state) =>
-  state?.[userSlice.name];
+export const getUser = () => (state) => state?.[userSlice.name];
 
-
-export default userSlice.reducer
+export default userSlice.reducer;

@@ -1,7 +1,6 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-
   scalar Date
 
   type UserStory {
@@ -17,7 +16,6 @@ const typeDefs = gql`
     password: String!
     createdAt: String
     updatedAt: String
-    playedStories: [UserStory]
   }
 
   type storyOption {
@@ -51,7 +49,12 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    register(firstName: String, lastName: String, email: String!, password: String!): Auth
+    addUser(
+      firstName: String
+      lastName: String
+      email: String!
+      password: String!
+    ): Auth
     loginUser(email: String!, password: String!): Auth
   }
 `;
