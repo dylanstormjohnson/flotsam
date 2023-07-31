@@ -11,7 +11,7 @@ const UpdatePhoto = () => {
   const [err, setErr] = useState("");
   const [photo, setPhoto] = useState({ preview: "", data: "" });
 
-  const [updatePhoto, { loading }] = useMutation(UPDATE_PHOTO);
+  // const [updatePhoto, { loading }] = useMutation(UPDATE_PHOTO);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -35,11 +35,10 @@ const UpdatePhoto = () => {
     // submit to backend
     try {
       // Execute mutation and pass in defined parameter data as variables
-      const { data } = await updatePhoto({
+      /*const { data } = await updatePhoto({
         variables: { file: photo.data },
-      });
-
-      console.log(data);
+      });*/
+      // console.log(data);
       // call redux set auth func
       //dispatch(setAuthenticatedUser(data.updateUser.user));
       //AuthService.login(data.updateUser.token);

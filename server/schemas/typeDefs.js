@@ -64,7 +64,6 @@ const typeDefs = gql`
       bio: String
       password: String
     ): Auth
-    updatePhoto(file: Upload): String
   }
 `;
 

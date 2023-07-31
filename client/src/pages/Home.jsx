@@ -1,4 +1,6 @@
+import Button from "react-bootstrap/Button";
 import Page from "../components/Page";
+import { Link } from "react-router-dom";
 
 const headContent = (
   <>
@@ -15,6 +17,9 @@ export default function Home() {
       headContent={headContent}
     >
       <div>Home</div>
+      <Link to="/gameplay">
+        <Button>Play Game</Button>
+      </Link>
     </Page>
   );
 }

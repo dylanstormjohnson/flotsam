@@ -66,10 +66,6 @@ const resolvers = {
         throw new AuthenticationError("User not found");
       }
     },
-    updatePhoto: (parent, args) => {
-      console.log(args);
-      return "Success";
-    },
   },
 };
 
