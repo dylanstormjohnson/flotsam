@@ -31,7 +31,7 @@ export default function Page({
   isProtected = false,
   headContent = defaultHeadContent,
   children,
-  className
+  className,
 }) {
   const { isAuthenticated } = useSelector(getUser());
 
