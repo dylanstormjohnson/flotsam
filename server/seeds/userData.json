@@ -1,0 +1,23 @@
+[
+  {
+    "firstName": "Noemi",
+    "lastName": "Couch",
+    "email": "noemicouch@gmail.com",
+    "password": "123456",
+    "profilePhoto": ""
+  },
+  {
+    "firstName": "Da",
+    "lastName": "Storm4",
+    "email": "dastorm4@gmail.com",
+    "password": "9876",
+    "profilePhoto": ""
+  },
+  {
+    "firstName": "KC",
+    "lastName": "Allen0907",
+    "email": "KCAllen0907@gmail.com",
+    "password": "12345678",
+    "profilePhoto": ""
+  }
+]
