@@ -14,6 +14,7 @@ const typeDefs = gql`
     lastName: String
     email: String!
     password: String!
+    bio: String
     createdAt: String
     updatedAt: String
   }
@@ -46,6 +47,10 @@ const typeDefs = gql`
 
   type Query {
     me: User
+    allStories: [Story]
+    story(id: ID!): Story
+    storySlide(id: ID!): StorySlide
+    storyOption(id: ID!): StoryOption
   }
 
   type Mutation {
@@ -56,6 +61,46 @@ const typeDefs = gql`
       password: String!
     ): Auth
     loginUser(email: String!, password: String!): Auth
+    updateUser(
+      id: String!
+      firstName: String
+      lastName: String
+      bio: String
+      password: String
+    ): Auth
+    addStory(
+      name: String!
+      numberOfPossibleEndings: Int!
+      firstStorySlide: storySlide
+    )
+    addStorySlide(
+      text: String!
+      backgroundImage: String!
+      options: [storyOption]
+      endSlide: Boolean
+    )
+    addStoryOption(
+      text: String!
+      nextStorySlide: storySlide
+    )
+    updateStory(
+      id: String!
+      name: String!
+      numberOfPossibleEndings: Int!
+      firstStorySlide: storySlide
+    )
+    updateStorySlide(
+      id: String!
+      text: String!
+      backgroundImage: String!
+      options: [storyOption]
+      endSlide: Boolean
+    )
+    updateStoryOption(
+      id: String!
+      text: String!
+      nextStorySlide: storySlide
+    )
   }
 `;
 

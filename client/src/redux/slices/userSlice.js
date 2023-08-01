@@ -1,8 +1,7 @@
-import { empty } from "@apollo/client";
 import { createSlice } from "@reduxjs/toolkit";
 
 const emptyUser = {
-  id: "",
+  _id: "",
   firstName: "",
   lastName: "",
   email: "",

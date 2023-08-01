@@ -16,7 +16,7 @@ const Register = () => {
   const [confirmPass, setConfirmPass] = useState("");
   const [err, setErr] = useState("");
 
-  const [addUser, { error, loading }] = useMutation(ADD_USER);
+  const [addUser, { loading }] = useMutation(ADD_USER);
   const dispatch = useDispatch();
 
   const handleFormSubmit = async (event) => {
