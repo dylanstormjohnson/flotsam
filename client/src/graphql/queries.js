@@ -7,6 +7,8 @@ export const QUERY_ME = gql`
       firstName
       lastName
       email
+      bio
+      profilePhoto
       createdAt
       updatedAt
     }

@@ -1,10 +1,11 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken'
 
 const secret = process.env.JWT_SECRET;
 const expiration = process.env.JWT_EXPIRATION;
 
-module.exports = {
-  authMiddleware: function ({ req }) {
+
+
+export const authMiddleware = ({req}) => {
     let token = req.body.token || req.query.token || req.headers.authorization;
 
     if (req.headers.authorization) {
@@ -23,8 +24,11 @@ module.exports = {
     }
 
     return req;
-  },
-  signToken: function (payload) {
-    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
-  },
-};
+
+}
+export const signToken = (payload) => {
+    return jwt.sign({ data: payload }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION });
+
+}
+
+//export {authMiddleware, signToken}
