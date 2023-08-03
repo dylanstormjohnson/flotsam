@@ -10,6 +10,7 @@ export const LOGIN_USER = gql`
         lastName
         email
         bio
+        profilePhoto
         createdAt
         updatedAt
       }
@@ -37,6 +38,7 @@ export const ADD_USER = gql`
         lastName
         email
         bio
+        profilePhoto
         createdAt
         updatedAt
       }
@@ -66,6 +68,25 @@ export const UPDATE_USER = gql`
         lastName
         email
         bio
+        profilePhoto
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+
+export const SINGLE_UPLOAD_MUTATION = gql`
+  mutation SingleUpload($file: Upload!, $id:String!) {
+    singleUpload(file: $file, id:$id) {
+     token
+      user {
+        _id
+        firstName
+        lastName
+        email
+        bio
+        profilePhoto
         createdAt
         updatedAt
       }

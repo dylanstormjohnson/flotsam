@@ -11,12 +11,17 @@ const { signToken } = require("../utils/auth");
 const {
   AuthenticationError,
   UserInputError,
-} = require("apollo-server-express");
+} from "apollo-server-express"
+import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs";
+import fs from "fs"
+import path from "path"
+import crypto from "crypto"
 
-const { dateScalar } = require("./scalar");
+import { dateScalar } from "./scalar.js"
 
 const resolvers = {
   Date: dateScalar,
+  Upload: GraphQLUpload,
   Query: {
     me: async (parent, args, context) => {
       if (!context.user) {
@@ -93,7 +98,6 @@ const resolvers = {
       try {
         const user = await User.create(argObj);
 
-        console.log(argObj);
 
         const token = signToken(user);
         return { token, user };
@@ -104,12 +108,13 @@ const resolvers = {
     },
 
     loginUser: async (parent, { email, password }) => {
+      
       const user = await User.findOne({ email });
 
       if (!user) {
         throw new AuthenticationError("No user found with this email address");
       }
-
+      
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
@@ -131,7 +136,6 @@ const resolvers = {
         if (password) user.password = password;
 
         const updatedUser = await user.save();
-        console.log(updatedUser);
 
         const token = signToken(updatedUser);
 
@@ -209,7 +213,70 @@ const resolvers = {
 
       console.log(userData);
     },
+   singleUpload: async function (parent, { file, id }) {
+    const { createReadStream, filename, encoding, mimetype } = await file;
+    const stream = createReadStream();
+    const __dirname = path.resolve();
+    const dirPath = '../client/src/assets/profileUploads'
+
+    fs.mkdirSync(path.join(__dirname, dirPath), { recursive: true });
+
+    const f_name = `${id}.${filename.split(".")[1]}`
+    const filePath = path.join(__dirname,dirPath,  f_name )
+
+      // default directory is the current directory
+
+  // get all file names in directory
+  fs.readdir(path.resolve(dirPath), (err, fileNames) => {
+    if (err) throw err;
+
+    // iterate through the found file names
+    for (const name of fileNames) {
+
+      // if file name matches the pattern
+      if (pattern.test(name)) {
+
+        // try to remove the file and log the result
+        fs.unlink(path.resolve(name), (err) => {
+          if (err) throw err;
+          console.log(`Deleted ${name}`);
+        });
+      }
+    }
+  });
+
+    const output = fs.createWriteStream(filePath);
+
+    stream.pipe(output);
+
+    await new Promise(function (resolve, reject) {
+      output.on('close', () => {
+        console.log('File uploaded');
+        resolve();
+      });
+
+      output.on('error', (err) => {
+        console.log(err);
+        reject(err);
+      });
+    });
+
+    // find user
+    const user = await User.findById(id)
+    if(user){
+      user.profilePhoto = f_name
+
+      const updatedUser = await user.save()
+
+      const token = signToken(updatedUser);
+
+        return { token, user: updatedUser };
+      } else {
+        throw new AuthenticationError("User not found");
+      }
+
+  },
   },
 };
 
-module.exports = resolvers;
+export default resolvers;

@@ -3,15 +3,23 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import { useMutation } from "@apollo/client";
-import { UPDATE_PHOTO } from "../graphql/mutations";
+import { SINGLE_UPLOAD_MUTATION } from "../graphql/mutations";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, setAuthenticatedUser } from "../redux/slices/userSlice";
+import AuthService from "../utils/auth"
 
 const fileTypes = ["image/png", "image/jpg", "image/jpeg"];
 
 const UpdatePhoto = () => {
   const [err, setErr] = useState("");
+   const [successMsg, setSuccessMsg] = useState("");
   const [photo, setPhoto] = useState({ preview: "", data: "" });
 
-  // const [updatePhoto, { loading }] = useMutation(UPDATE_PHOTO);
+ const {userData}= useSelector(getUser())
+ const dispatch = useDispatch()
+  const [singleUpload, { loading }] = useMutation(
+    SINGLE_UPLOAD_MUTATION
+  );
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -29,20 +37,24 @@ const UpdatePhoto = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    let formData = new FormData();
-    formData.append("file", photo.data);
+    setErr("")
+
+    if (!photo.data) return setErr("Choose a file");
 
     // submit to backend
     try {
       // Execute mutation and pass in defined parameter data as variables
-      /*const { data } = await updatePhoto({
-        variables: { file: photo.data },
-      });*/
-      // console.log(data);
+      const {data} = await singleUpload({
+        variables: { file: photo.data, id:userData._id }
+      });
+      
+      setSuccessMsg("Successfully Uploaded Photo");
+      setPhoto({preview:"",data:""});
+      setTimeout(() => setSuccessMsg(''), 3000);
       // call redux set auth func
-      //dispatch(setAuthenticatedUser(data.updateUser.user));
-      //AuthService.login(data.updateUser.token);
-      //setSuccessMsg("Successfully Updated Password");
+      dispatch(setAuthenticatedUser(data.singleUpload.user));
+      AuthService.login(data.singleUpload.token);
+      //
     } catch (err) {
       setErr(err.message);
       console.log("ERROR: ", err);
@@ -57,13 +69,27 @@ const UpdatePhoto = () => {
           {err}
         </Alert>
       )}
-
-      {photo && (
-        <img className="profileImg" src={photo.preview} alt="profile photo" />
+       {successMsg && (
+        <Alert key="success" variant="success">
+          {successMsg}
+        </Alert>
       )}
 
+      {photo.preview ? (
+        <img className="profileImg" src={photo.preview} alt="profile" />
+      ) 
+      : userData?.profilePhoto ?  
+      <img className="profileImg" src={require(`../assets/profileUploads/${userData.profilePhoto}`)} alt="user profile" /> : null}
+
       <Form.Control onChange={handleFileChange} type="file" />
-      <Button type="submit">Update Photo</Button>
+      
+       {loading ? (
+        <Button type="submit" disabled={true}>
+          Loading...
+        </Button>
+      ) : (
+       <Button type="submit">Update Photo</Button>
+      )}
     </form>
   );
 };

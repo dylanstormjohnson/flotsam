@@ -1,7 +1,9 @@
-const { gql } = require("apollo-server-express");
+import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
   scalar Date
+
+  scalar Upload
 
   type UserStory {
     story: Story
@@ -16,6 +18,7 @@ const typeDefs = gql`
     password: String!
     bio: String
     storiesPlayed: [UserStory]
+    profilePhoto: String
     createdAt: String
     updatedAt: String
   }
@@ -77,6 +80,7 @@ const typeDefs = gql`
 
     updateUserStoriesPlayed(storyId: String!, storySlideId: String): User
 
+    singleUpload(file: Upload!, id: String!): Auth
     addStory(
       name: String!
       numberOfPossibleEndings: Int!
@@ -138,4 +142,4 @@ const typeDefs = gql`
   }
 `;
 
-module.exports = typeDefs;
+export default typeDefs;
