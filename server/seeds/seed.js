@@ -1,7 +1,7 @@
-const db = require("../config/connection");
-const { User } = require("../models");
+import db from "../config/connection.js"
+import { User } from "../models/index.js"
 
-const userData = require("./userData.json");
+import userData from "./userData.json"
 
 db.once("open", async () => {
   // clean database

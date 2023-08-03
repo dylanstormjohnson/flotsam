@@ -1,5 +1,5 @@
-const { Schema, model } = require("mongoose");
-const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt"
+import {Schema, model} from "mongoose"
 
 const storySchema = new Schema(
   {
@@ -37,4 +37,4 @@ const storySchema = new Schema(
 
 const Story = model("Story", storySchema);
 
-module.exports = Story;
+export default Story;

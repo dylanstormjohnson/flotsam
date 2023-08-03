@@ -1,4 +1,4 @@
-const User = require("./User");
-const Story = require("./Story");
+import User from "./User.js"
+import Story from "./Story.js"
 
-module.exports = { User, Story };
+export {User, Story}
