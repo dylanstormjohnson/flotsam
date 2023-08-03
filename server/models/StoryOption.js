@@ -1,23 +1,16 @@
 import bcrypt from "bcrypt"
 import {Schema, model} from "mongoose"
 
-const storySchema = new Schema(
+const storyOptionSchema = new Schema(
   {
-    name: {
+    text: {
       type: String,
       required: true,
     },
-    backgroundImage: {
-      type: String,
-      required: true,
-    },
-    numberOfPossibleEndings: {
-      type: Number,
-      required: true,
-    },
-    firstStorySlide: {
+    nextStorySlide: {
       type: Schema.Types.ObjectId,
       ref: "StorySlide",
+      required: true,
     },
     createdAt: {
       type: Date,
@@ -36,6 +29,6 @@ const storySchema = new Schema(
   }
 );
 
-const Story = model("Story", storySchema);
+const StoryOption = model("StoryOption", storyOptionSchema);
 
-export default Story;
+export default StoryOption;
