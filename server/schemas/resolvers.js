@@ -1,8 +1,11 @@
-// UserStory,
-// StorySlide,
-// StoryOption,
+import {
+  User,
+  Story,
+  PlayedStory,
+  StorySlide,
+  StoryOption,
+} from "../models/index.js";
 
-import { User, Story } from "../models/index.js";
 import { signToken } from "../utils/auth.js";
 import { AuthenticationError, UserInputError } from "apollo-server-express";
 import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs";
@@ -43,47 +46,68 @@ const resolvers = {
       }
     },
 
-    // allStorySlides: async () => {
-    //   try {
-    //     const allStorySlides = await StorySlide.find();
+    allStorySlides: async () => {
+      try {
+        const allStorySlides = await StorySlide.find();
 
-    //     return allStorySlides;
-    //   } catch (err) {
-    //     console.error(err);
-    //     throw new Error("Failed to fetch all story slides");
-    //   }
-    // },
+        return allStorySlides;
+      } catch (err) {
+        console.error(err);
+        throw new Error("Failed to fetch all story slides");
+      }
+    },
 
-    // storySlide: async (_, { id }) => {
-    //   try {
-    //     const storySlide = await StorySlide.findById(id);
-    //     return storySlide;
-    //   } catch (err) {
-    //     console.error(err);
-    //     throw new Error("Failed to fetch the story slide");
-    //   }
-    // },
+    storySlide: async (_, { id }) => {
+      try {
+        const storySlide = await StorySlide.findById(id);
+        return storySlide;
+      } catch (err) {
+        console.error(err);
+        throw new Error("Failed to fetch the story slide");
+      }
+    },
 
-    // allStoryOptions: async () => {
-    //   try {
-    //     const allStoryOptions = await StoryOption.find();
+    allStoryOptions: async () => {
+      try {
+        const allStoryOptions = await StoryOption.find();
 
-    //     return allStoryOptions;
-    //   } catch (err) {
-    //     console.error(err);
-    //     throw new Error("Failed to fetch all story options");
-    //   }
-    // },
+        return allStoryOptions;
+      } catch (err) {
+        console.error(err);
+        throw new Error("Failed to fetch all story options");
+      }
+    },
 
-    // storyOption: async (_, { id }) => {
-    //   try {
-    //     const storyOption = await StoryOption.findById(id);
-    //     return storyOption;
-    //   } catch (err) {
-    //     console.error(err);
-    //     throw new Error("Failed to fetch the story option");
-    //   }
-    // },
+    storyOption: async (_, { id }) => {
+      try {
+        const objectId = ObjectId(id);
+
+        const storyOption = await StoryOption.findById(objectId);
+
+        if (storyOption.nextStorySlide) {
+          const nextStorySlideId = storyOption.nextStorySlide.toString();
+          const nextStorySlide = await StorySlide.findById(nextStorySlideId);
+          storyOption.nextStorySlide = nextStorySlide;
+        }
+
+        return storyOption;
+      } catch (err) {
+        console.error(err);
+        throw new Error("Failed to fetch the story option");
+      }
+    },
+  },
+
+  StorySlide: {
+    options: async (parent) => {
+      const optionIds = parent.options;
+      const options = await StoryOption.find({ _id: { $in: optionIds } });
+      return options.map((option) => ({
+        _id: option._id,
+        text: option.text,
+        nextStorySlide: option.nextStorySlide,
+      }));
+    },
   },
 
   Mutation: {
@@ -155,55 +179,141 @@ const resolvers = {
       }
     },
 
-    // addStorySlide: async (parent, argObj) => {
-    //   try {
-    //     const { text, backgroundImage, options, endSlide } = argObj;
+    addStorySlide: async (parent, argObj) => {
+      try {
+        const { text, backgroundImage, options, endSlide } = argObj;
 
-    //     console.log(argObj);
+        console.log(argObj);
 
-    //     if (!text || !backgroundImage || !options || !endSlide) {
-    //       throw new Error("All fields are required except ID");
-    //     }
+        if (!text || !backgroundImage || !options || !endSlide) {
+          throw new Error("All fields are required except ID");
+        }
 
-    //     const storySlide = await StorySlide.create(argObj);
+        const storySlide = await StorySlide.create(argObj);
 
-    //     return storySlide;
-    //   } catch (err) {
-    //     console.log(err);
-    //     throw new Error("Failed to add a new Story Slide");
-    //   }
-    // },
+        return storySlide;
+      } catch (err) {
+        console.log(err);
+        throw new Error("Failed to add a new Story Slide");
+      }
+    },
 
-    // addStoryOption: async (parent, argObj) => {
-    //   try {
-    //     const { text, nextStorySlide } = argObj;
+    addStoryOption: async (parent, argObj) => {
+      try {
+        const { text, nextStorySlide } = argObj;
 
-    //     console.log(argObj);
+        console.log("Text:", text); // Add this line to check the value of text
 
-    //     if (!text || !nextStorySlide) {
-    //       throw new Error("All fields are required except ID");
-    //     }
+        if (!text || !nextStorySlide) {
+          throw new Error("All fields are required except ID");
+        }
 
-    //     const storyOption = await StoryOption.create(argObj);
+        const storyOption = await StoryOption.create(argObj);
 
-    //     return storyOption;
-    //   } catch (err) {
-    //     console.log(err);
-    //     throw new Error("Failed to add a new Story Option");
-    //   }
-    // },
+        return storyOption;
+      } catch (err) {
+        console.log(err);
+        throw new Error("Failed to add a new Story Option");
+      }
+    },
 
-    // updateUserStoriesPlayed: async (parent, argObj, context) => {
-    //   if (!user.context) {
-    //     throw AuthenticationError;
-    //   }
+    updateUserStoriesPlayed: async (parent, argObj, context) => {
+      if (!user.context) {
+        throw AuthenticationError;
+      }
 
-    //   const { storyId, storySlideId } = argObj;
+      const { storyId, storySlideId } = argObj;
 
-    //   const userData = await User.findById(context.user._id);
+      const userData = await User.findById(context.user._id);
 
-    //   console.log(userData);
-    // },
+      console.log(userData);
+
+      if (!userData) {
+        throw new Error("User not found.");
+      }
+
+      const playedStory = userData.storiesPlayed.find(
+        (ps) => ps.story && ps.story._id.toString() === storyId
+      );
+
+      if (!playedStory) {
+        userData.storiesPlayed.push({
+          story: storyId,
+          endings: [storySlideId],
+        });
+      } else {
+        const { endings } = playedStory;
+
+        const isStorySlideIdPresent = endings.some(
+          (slideId) => slideId.toString() === storySlideId
+        );
+
+        if (!isStorySlideIdPresent) {
+          endings.push(storySlideId);
+        }
+      }
+
+      await userData.save();
+
+      return userData;
+    },
+
+    updateStory: async (
+      parent,
+      { id, name, backgroundImage, numberOfPossibleEndings, firstStorySlide }
+    ) => {
+      const story = await Story.findById(id);
+
+      if (story) {
+        if (name) story.name = name;
+        if (backgroundImage) story.backgroundImage = backgroundImage;
+        if (numberOfPossibleEndings)
+          story.numberOfPossibleEndings = numberOfPossibleEndings;
+        if (firstStorySlide) story.firstStorySlide = firstStorySlide;
+
+        const updatedStory = await story.save();
+
+        return { story: updatedStory };
+      } else {
+        throw new AuthenticationError("Story not found");
+      }
+    },
+
+    updateStorySlide: async (
+      parent,
+      { id, text, backgroundImage, options, endSlide }
+    ) => {
+      const storySlide = await StorySlide.findById(id);
+
+      if (storySlide) {
+        if (text) storySlide.text = text;
+        if (backgroundImage) storySlide.backgroundImage = backgroundImage;
+        if (options) storySlide.options = options;
+        if (endSlide) storySlide.endSlide = endSlide;
+
+        const updatedStorySlide = await storySlide.save();
+
+        return { storySlide: updatedStorySlide };
+      } else {
+        throw new AuthenticationError("Story slide not found");
+      }
+    },
+
+    updateStoryOption: async (parent, { id, text, nextStorySlide }) => {
+      const storyOption = await Story.findById(id);
+
+      if (storyOption) {
+        if (text) storyOption.text = text;
+        if (nextStorySlide) storyOption.nextStorySlide = nextStorySlide;
+
+        const updatedStoryOption = await storyOption.save();
+
+        return { storyOption: updatedStoryOption };
+      } else {
+        throw new AuthenticationError("Story option not found");
+      }
+    },
+
     singleUpload: async function (parent, { file, id }) {
       const { createReadStream, filename, encoding, mimetype } = await file;
       const stream = createReadStream();
