@@ -79,7 +79,7 @@ const UpdatePhoto = () => {
         <img className="profileImg" src={photo.preview} alt="profile" />
       ) 
       : userData?.profilePhoto ?  
-      <img className="profileImg" src={require(`../assets/profileUploads/${userData.profilePhoto}`)} alt="user profile" /> : null}
+      <img className="profileImg" src={require(`../assets/images/profileUploads/${userData.profilePhoto}`)} alt="user profile" /> : null}
 
       <Form.Control onChange={handleFileChange} type="file" />
       
