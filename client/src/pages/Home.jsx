@@ -17,7 +17,8 @@ export default function Home() {
       headContent={headContent}
     >
       <div>Home</div>
-      <Link to="/gameplay">
+      {/* remove this button later */}
+      <Link to="/gameplay/1">
         <Button>Play Game</Button>
       </Link>
     </Page>

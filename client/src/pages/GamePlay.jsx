@@ -1,4 +1,5 @@
 import Page from "../components/Page";
+import { useParams } from "react-router-dom";
 
 const headContent = (
   <>
@@ -8,9 +9,11 @@ const headContent = (
 );
 
 export default function GamePlay() {
+  const { gameId } = useParams();
   return (
-    <Page className="authContainer" isProtected headContent={headContent}>
-      <h1>Welcome to game play</h1>
+    // add isProtected to this line
+    <Page className="authContainer"  headContent={headContent}>
+      <h1>Welcome to game play {gameId}</h1>
     </Page>
   );
 }
