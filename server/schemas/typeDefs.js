@@ -5,7 +5,7 @@ const typeDefs = gql`
 
   type UserStory {
     story: Story
-    endings: [storySlide]
+    endings: [StorySlide]
   }
 
   type User {
@@ -15,21 +15,22 @@ const typeDefs = gql`
     email: String!
     password: String!
     bio: String
+    storiesPlayed: [UserStory]
     createdAt: String
     updatedAt: String
   }
 
-  type storyOption {
+  type StoryOption {
     _id: ID!
     text: String!
-    nextStorySlide: storySlide
+    nextStorySlide: StorySlide
   }
 
-  type storySlide {
+  type StorySlide {
     _id: ID!
     text: String!
     backgroundImage: String!
-    options: [storyOption]
+    options: [StoryOption]
     endSlide: Boolean
   }
 
@@ -37,7 +38,7 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     numberOfPossibleEndings: Int!
-    firstStorySlide: storySlide
+    firstStorySlide: StorySlide
   }
 
   type Auth {
@@ -49,8 +50,11 @@ const typeDefs = gql`
     me: User
     allStories: [Story]
     story(id: ID!): Story
+    allStorySlides: [StorySlide]
     storySlide(id: ID!): StorySlide
+    allStoryOptions: [StoryOption]
     storyOption(id: ID!): StoryOption
+    nextStorySlide(category: ID, name: String): StorySlide
   }
 
   type Mutation {
@@ -60,7 +64,9 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
+
     loginUser(email: String!, password: String!): Auth
+
     updateUser(
       id: String!
       firstName: String
@@ -68,39 +74,67 @@ const typeDefs = gql`
       bio: String
       password: String
     ): Auth
+
+    updateUserStoriesPlayed(storyId: String!, storySlideId: String): User
+
     addStory(
       name: String!
       numberOfPossibleEndings: Int!
-      firstStorySlide: storySlide
-    )
+      firstStorySlide: StorySlideInput
+    ): Story
+
     addStorySlide(
       text: String!
       backgroundImage: String!
-      options: [storyOption]
+      options: [StoryOptionInput]
       endSlide: Boolean
-    )
-    addStoryOption(
-      text: String!
-      nextStorySlide: storySlide
-    )
+    ): StorySlide
+
+    addStoryOption(text: String!, nextStorySlide: StorySlideInput): StoryOption
+
     updateStory(
       id: String!
       name: String!
       numberOfPossibleEndings: Int!
-      firstStorySlide: storySlide
-    )
+      firstStorySlide: StorySlideInput
+    ): Story
+
+    updateUserStory(
+      id: String!
+      name: String!
+      endings: [StorySlideInput]
+    ): UserStory
+
     updateStorySlide(
       id: String!
       text: String!
       backgroundImage: String!
-      options: [storyOption]
+      options: [StoryOptionInput]
       endSlide: Boolean
-    )
+    ): StorySlide
+
     updateStoryOption(
       id: String!
       text: String!
-      nextStorySlide: storySlide
-    )
+      nextStorySlide: StorySlideInput
+    ): StoryOption
+  }
+
+  input StorySlideInput {
+    text: String!
+    backgroundImage: String!
+    options: [StoryOptionInput]
+    endSlide: Boolean
+  }
+
+  input StoryOptionInput {
+    text: String!
+    nextStorySlide: ID
+  }
+
+  input StoryOptionInput {
+    text: String!
+    nextStorySlide: ID
   }
 `;
 

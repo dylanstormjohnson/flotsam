@@ -1,6 +1,8 @@
 import Card from "react-bootstrap/Card";
 import React from "react";
 import { Link } from "react-router-dom"
+// import { useQuery, useMutation } from '@apollo/client';
+// import { ALL_STORIES_QUERY, ADD_STORY_MUTATION } from '../graphql/queries';
 
 const ProfileStories = () => {
   return (
