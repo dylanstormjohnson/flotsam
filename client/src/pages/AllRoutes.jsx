@@ -13,7 +13,7 @@ export default function AllRoutes() {
       <Route path="/stories" element={<Stories />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/gameplay" element={<GamePlay />} />
+      <Route path="/gameplay/:gameId" element={<GamePlay />} />
       <Route path="*" element={<Page404 />} />
     </Routes>
   );

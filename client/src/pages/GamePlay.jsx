@@ -1,4 +1,7 @@
 import Page from "../components/Page";
+import { useParams } from "react-router-dom";
+import { useQuery } from '@apollo/client';
+import { QUERY_SINGLE_STORY, QUERY_SINGLE_STORY_SLIDE, QUERY_SINGLE_STORY_OPTION } from '../graphql/queries';
 
 const headContent = (
   <>
@@ -8,9 +11,25 @@ const headContent = (
 );
 
 export default function GamePlay() {
+  const { gameId } = useParams();
+
+  const { loading, error, data } = useQuery(QUERY_SINGLE_STORY, {
+    variables: { storyId: gameId },
+  });
+
+  // const { hloading, herror, hdata } = useQuery(QUERY_SINGLE_STORY_SLIDE, {
+  //   variables: { storyId: gameId },
+  // });
+
+  console.log(data)
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
-    <Page className="authContainer" isProtected headContent={headContent}>
-      <h1>Welcome to game play</h1>
+    // add isProtected to this line
+    <Page className="authContainer"  headContent={headContent}>
+      <h1>Welcome to {data.story.name}</h1>
     </Page>
   );
 }
