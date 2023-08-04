@@ -163,7 +163,7 @@ const resolvers = {
     const { createReadStream, filename, encoding, mimetype } = await file;
     const stream = createReadStream();
     const __dirname = path.resolve();
-    const dirPath = '../client/src/assets/profileUploads'
+    const dirPath = '../client/src/assets/images/profileUploads'
 
       fs.mkdirSync(path.join(__dirname, dirPath), { recursive: true });
 
@@ -171,25 +171,6 @@ const resolvers = {
       const filePath = path.join(__dirname, dirPath, f_name);
 
       // default directory is the current directory
-
-  // get all file names in directory
-  fs.readdir(path.resolve(dirPath), (err, fileNames) => {
-    if (err) throw err;
-
-    // iterate through the found file names
-    for (const name of fileNames) {
-
-      // if file name matches the pattern
-      if (pattern.test(name)) {
-
-        // try to remove the file and log the result
-        fs.unlink(path.resolve(name), (err) => {
-          if (err) throw err;
-          console.log(`Deleted ${name}`);
-        });
-      }
-    }
-  });
 
       const output = fs.createWriteStream(filePath);
 
