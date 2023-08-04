@@ -159,166 +159,11 @@ const resolvers = {
         throw new AuthenticationError("User not found");
       }
     },
-
-    addStory: async (parent, argObj) => {
-      try {
-        const { name, numberOfPossibleEndings, firstStorySlide } = argObj;
-
-        console.log(argObj);
-
-        if (!name || !numberOfPossibleEndings || !firstStorySlide) {
-          throw new Error("All fields are required except ID");
-        }
-
-        const story = await Story.create(argObj);
-
-        return story;
-      } catch (err) {
-        console.log(err);
-        throw new Error("Failed to add a new Story");
-      }
-    },
-
-    addStorySlide: async (parent, argObj) => {
-      try {
-        const { text, backgroundImage, options, endSlide } = argObj;
-
-        console.log(argObj);
-
-        if (!text || !backgroundImage || !options || !endSlide) {
-          throw new Error("All fields are required except ID");
-        }
-
-        const storySlide = await StorySlide.create(argObj);
-
-        return storySlide;
-      } catch (err) {
-        console.log(err);
-        throw new Error("Failed to add a new Story Slide");
-      }
-    },
-
-    addStoryOption: async (parent, argObj) => {
-      try {
-        const { text, nextStorySlide } = argObj;
-
-        console.log("Text:", text); // Add this line to check the value of text
-
-        if (!text || !nextStorySlide) {
-          throw new Error("All fields are required except ID");
-        }
-
-        const storyOption = await StoryOption.create(argObj);
-
-        return storyOption;
-      } catch (err) {
-        console.log(err);
-        throw new Error("Failed to add a new Story Option");
-      }
-    },
-
-    updateUserStoriesPlayed: async (parent, argObj, context) => {
-      if (!user.context) {
-        throw AuthenticationError;
-      }
-
-      const { storyId, storySlideId } = argObj;
-
-      const userData = await User.findById(context.user._id);
-
-      console.log(userData);
-
-      if (!userData) {
-        throw new Error("User not found.");
-      }
-
-      const playedStory = userData.storiesPlayed.find(
-        (ps) => ps.story && ps.story._id.toString() === storyId
-      );
-
-      if (!playedStory) {
-        userData.storiesPlayed.push({
-          story: storyId,
-          endings: [storySlideId],
-        });
-      } else {
-        const { endings } = playedStory;
-
-        const isStorySlideIdPresent = endings.some(
-          (slideId) => slideId.toString() === storySlideId
-        );
-
-        if (!isStorySlideIdPresent) {
-          endings.push(storySlideId);
-        }
-      }
-
-      await userData.save();
-
-      return userData;
-    },
-
-    updateStory: async (
-      parent,
-      { id, name, backgroundImage, numberOfPossibleEndings, firstStorySlide }
-    ) => {
-      const story = await Story.findById(id);
-
-      if (story) {
-        if (name) story.name = name;
-        if (backgroundImage) story.backgroundImage = backgroundImage;
-        if (numberOfPossibleEndings)
-          story.numberOfPossibleEndings = numberOfPossibleEndings;
-        if (firstStorySlide) story.firstStorySlide = firstStorySlide;
-
-        const updatedStory = await story.save();
-
-        return { story: updatedStory };
-      } else {
-        throw new AuthenticationError("Story not found");
-      }
-    },
-
-    updateStorySlide: async (
-      parent,
-      { id, text, backgroundImage, options, endSlide }
-    ) => {
-      const storySlide = await StorySlide.findById(id);
-
-      if (storySlide) {
-        if (text) storySlide.text = text;
-        if (backgroundImage) storySlide.backgroundImage = backgroundImage;
-        if (options) storySlide.options = options;
-        if (endSlide) storySlide.endSlide = endSlide;
-
-        const updatedStorySlide = await storySlide.save();
-
-        return { storySlide: updatedStorySlide };
-      } else {
-        throw new AuthenticationError("Story slide not found");
-      }
-    },
-
-    updateStoryOption: async (parent, { id, text, nextStorySlide }) => {
-      const storyOption = await Story.findById(id);
-
-      if (storyOption) {
-        if (text) storyOption.text = text;
-        if (nextStorySlide) storyOption.nextStorySlide = nextStorySlide;
-
-        const updatedStoryOption = await storyOption.save();
-
-        return { storyOption: updatedStoryOption };
-      } else {
-        throw new AuthenticationError("Story option not found");
-      }
-    },
-
-    singleUpload: async function (parent, { file, id }) {
-      const { createReadStream, filename, encoding, mimetype } = await file;
-      const stream = createReadStream();
-      const __dirname = path.resolve();
-      const dirPath = "../client/src/assets/profileUploads";
+   singleUpload: async function (parent, { file, id }) {
+    const { createReadStream, filename, encoding, mimetype } = await file;
+    const stream = createReadStream();
+    const __dirname = path.resolve();
+    const dirPath = '../client/src/assets/profileUploads'
 
       fs.mkdirSync(path.join(__dirname, dirPath), { recursive: true });
 
@@ -327,22 +172,24 @@ const resolvers = {
 
       // default directory is the current directory
 
-      // get all file names in directory
-      fs.readdir(path.resolve(dirPath), (err, fileNames) => {
-        if (err) throw err;
+  // get all file names in directory
+  fs.readdir(path.resolve(dirPath), (err, fileNames) => {
+    if (err) throw err;
 
-        // iterate through the found file names
-        for (const name of fileNames) {
-          // if file name matches the pattern
-          if (pattern.test(name)) {
-            // try to remove the file and log the result
-            fs.unlink(path.resolve(name), (err) => {
-              if (err) throw err;
-              console.log(`Deleted ${name}`);
-            });
-          }
-        }
-      });
+    // iterate through the found file names
+    for (const name of fileNames) {
+
+      // if file name matches the pattern
+      if (pattern.test(name)) {
+
+        // try to remove the file and log the result
+        fs.unlink(path.resolve(name), (err) => {
+          if (err) throw err;
+          console.log(`Deleted ${name}`);
+        });
+      }
+    }
+  });
 
       const output = fs.createWriteStream(filePath);
 
