@@ -1,0 +1,82 @@
+[
+  {
+    "_id": "000000000000",
+    "text": "Play Again",
+    "nextStorySlide": "000000000000"
+  },
+  {
+    "_id": "000000000001",
+    "text": "Try Again",
+    "nextStorySlide": "000000000000"
+  },
+  {
+    "_id": "000000000002",
+    "text": "Go to Stories Page",
+    "nextStorySlide": "000000000000"
+  },
+  {
+    "_id": "000000000003",
+    "text": "Check the sand around you. (Maybe you weren't the only thing to wash up over here...)",
+    "nextStorySlide": "000000000001"
+  },
+  {
+    "_id": "000000000004",
+    "text": "Walk to the flotsam (There's got to be something over there to help you out...)",
+    "nextStorySlide": "000000000002"
+  },
+  {
+    "_id": "000000000005",
+    "text": "Head into the jungle (Perhaps I'll be able to build a raft...)",
+    "nextStorySlide": "000000000003"
+  },
+  {
+    "_id": "000000000006",
+    "text": "Gather driftwood to burn.  (Wood should burn for a long time...)",
+    "nextStorySlide": "000000000004"
+  },
+  {
+    "_id": "000000000007",
+    "text": "Gather palm leaves and tall grass to burn.  (Foliage should ignite quickly...)",
+    "nextStorySlide": "000000000005"
+  },
+  {
+    "_id": "000000000008",
+    "text": "Light it now. (Perhaps some plane or helicopter will see you...)",
+    "nextStorySlide": "000000000006"
+  },
+  {
+    "_id": "000000000009",
+    "text": "Light it later.  (I shouldn’t waste the fuel now with nightfall so close...)",
+    "nextStorySlide": "000000000007"
+  },
+  {
+    "_id": "000000000010",
+    "text": "Light it now. (Perhaps some plane or helicopter will see you...)",
+    "nextStorySlide": "000000000008"
+  },
+  {
+    "_id": "000000000011",
+    "text": "Light it later.  (I shouldn’t waste the fuel now with nightfall so close...)",
+    "nextStorySlide": "000000000009"
+  },
+  {
+    "_id": "000000000012",
+    "text": "Check the crates.  (There's got to be something useful in one of these...)",
+    "nextStorySlide": "000000000000"
+  },
+  {
+    "_id": "000000000013",
+    "text": "Check the barrels.  (Surely one of these has water in it...)",
+    "nextStorySlide": "000000000000"
+  },
+  {
+    "_id": "000000000014",
+    "text": "Gather the bamboo stalks.  (Surely these’ll float, right?...)",
+    "nextStorySlide": "000000000000"
+  },
+  {
+    "_id": "000000000015",
+    "text": "Gather the branches.  (Most boats are made of wood...)",
+    "nextStorySlide": "000000000000"
+  }
+]

@@ -1,23 +1,19 @@
-const {
+import {
   User,
   Story,
-  UserStory,
+  PlayedStory,
   StorySlide,
   StoryOption,
-} = require("../models");
+} from "../models/index.js";
 
-const { signToken } = require("../utils/auth");
-
-const {
-  AuthenticationError,
-  UserInputError,
-} from "apollo-server-express"
+import { signToken } from "../utils/auth.js";
+import { AuthenticationError, UserInputError } from "apollo-server-express";
 import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs";
-import fs from "fs"
-import path from "path"
-import crypto from "crypto"
+import fs from "fs";
+import path from "path";
+import crypto from "crypto";
 
-import { dateScalar } from "./scalar.js"
+import { dateScalar } from "./scalar.js";
 
 const resolvers = {
   Date: dateScalar,
@@ -84,7 +80,16 @@ const resolvers = {
 
     storyOption: async (_, { id }) => {
       try {
-        const storyOption = await StoryOption.findById(id);
+        const objectId = ObjectId(id);
+
+        const storyOption = await StoryOption.findById(objectId);
+
+        if (storyOption.nextStorySlide) {
+          const nextStorySlideId = storyOption.nextStorySlide.toString();
+          const nextStorySlide = await StorySlide.findById(nextStorySlideId);
+          storyOption.nextStorySlide = nextStorySlide;
+        }
+
         return storyOption;
       } catch (err) {
         console.error(err);
@@ -93,11 +98,22 @@ const resolvers = {
     },
   },
 
+  StorySlide: {
+    options: async (parent) => {
+      const optionIds = parent.options;
+      const options = await StoryOption.find({ _id: { $in: optionIds } });
+      return options.map((option) => ({
+        _id: option._id,
+        text: option.text,
+        nextStorySlide: option.nextStorySlide,
+      }));
+    },
+  },
+
   Mutation: {
     addUser: async (parent, argObj) => {
       try {
         const user = await User.create(argObj);
-
 
         const token = signToken(user);
         return { token, user };
@@ -108,13 +124,12 @@ const resolvers = {
     },
 
     loginUser: async (parent, { email, password }) => {
-      
       const user = await User.findOne({ email });
 
       if (!user) {
         throw new AuthenticationError("No user found with this email address");
       }
-      
+
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
@@ -144,85 +159,16 @@ const resolvers = {
         throw new AuthenticationError("User not found");
       }
     },
-
-    addStory: async (parent, argObj) => {
-      try {
-        const { name, numberOfPossibleEndings, firstStorySlide } = argObj;
-
-        console.log(argObj);
-
-        if (!name || !numberOfPossibleEndings || !firstStorySlide) {
-          throw new Error("All fields are required except ID");
-        }
-
-        const story = await Story.create(argObj);
-
-        return story;
-      } catch (err) {
-        console.log(err);
-        throw new Error("Failed to add a new Story");
-      }
-    },
-
-    addStorySlide: async (parent, argObj) => {
-      try {
-        const { text, backgroundImage, options, endSlide } = argObj;
-
-        console.log(argObj);
-
-        if (!text || !backgroundImage || !options || !endSlide) {
-          throw new Error("All fields are required except ID");
-        }
-
-        const storySlide = await StorySlide.create(argObj);
-
-        return storySlide;
-      } catch (err) {
-        console.log(err);
-        throw new Error("Failed to add a new Story Slide");
-      }
-    },
-
-    addStoryOption: async (parent, argObj) => {
-      try {
-        const { text, nextStorySlide } = argObj;
-
-        console.log(argObj);
-
-        if (!text || !nextStorySlide) {
-          throw new Error("All fields are required except ID");
-        }
-
-        const storyOption = await StoryOption.create(argObj);
-
-        return storyOption;
-      } catch (err) {
-        console.log(err);
-        throw new Error("Failed to add a new Story Option");
-      }
-    },
-
-    updateUserStoriesPlayed: async (parent, argObj, context) => {
-      if (!user.context) {
-        throw AuthenticationError;
-      }
-
-      const { storyId, storySlideId } = argObj;
-
-      const userData = await User.findById(context.user._id);
-
-      console.log(userData);
-    },
    singleUpload: async function (parent, { file, id }) {
     const { createReadStream, filename, encoding, mimetype } = await file;
     const stream = createReadStream();
     const __dirname = path.resolve();
     const dirPath = '../client/src/assets/profileUploads'
 
-    fs.mkdirSync(path.join(__dirname, dirPath), { recursive: true });
+      fs.mkdirSync(path.join(__dirname, dirPath), { recursive: true });
 
-    const f_name = `${id}.${filename.split(".")[1]}`
-    const filePath = path.join(__dirname,dirPath,  f_name )
+      const f_name = `${id}.${filename.split(".")[1]}`;
+      const filePath = path.join(__dirname, dirPath, f_name);
 
       // default directory is the current directory
 
@@ -245,37 +191,36 @@ const resolvers = {
     }
   });
 
-    const output = fs.createWriteStream(filePath);
+      const output = fs.createWriteStream(filePath);
 
-    stream.pipe(output);
+      stream.pipe(output);
 
-    await new Promise(function (resolve, reject) {
-      output.on('close', () => {
-        console.log('File uploaded');
-        resolve();
+      await new Promise(function (resolve, reject) {
+        output.on("close", () => {
+          console.log("File uploaded");
+          resolve();
+        });
+
+        output.on("error", (err) => {
+          console.log(err);
+          reject(err);
+        });
       });
 
-      output.on('error', (err) => {
-        console.log(err);
-        reject(err);
-      });
-    });
+      // find user
+      const user = await User.findById(id);
+      if (user) {
+        user.profilePhoto = f_name;
 
-    // find user
-    const user = await User.findById(id)
-    if(user){
-      user.profilePhoto = f_name
+        const updatedUser = await user.save();
 
-      const updatedUser = await user.save()
-
-      const token = signToken(updatedUser);
+        const token = signToken(updatedUser);
 
         return { token, user: updatedUser };
       } else {
         throw new AuthenticationError("User not found");
       }
-
-  },
+    },
   },
 };
 
