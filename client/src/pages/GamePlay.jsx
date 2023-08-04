@@ -2,11 +2,13 @@ import Page from "../components/Page";
 import { useParams } from "react-router-dom";
 import { useQuery } from '@apollo/client';
 import { QUERY_SINGLE_STORY, QUERY_SINGLE_STORY_SLIDE, QUERY_SINGLE_STORY_OPTION } from '../graphql/queries';
+import { audio } from '.../server/utils/audioAPI.js'
 
 const headContent = (
   <>
     <title>FlotSam - GamePlay</title>
     <meta name="description" content="This is the game play page of my app." />
+    <audio>${audio}</audio>
   </>
 );
 
