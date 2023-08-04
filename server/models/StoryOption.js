@@ -1,28 +1,21 @@
 import bcrypt from "bcrypt"
-import {Schema, model, Types } from "mongoose"
+import {Schema, model} from "mongoose"
 
-const storySchema = new Schema(
+const storyOptionSchema = new Schema(
   {
     _id: {
       type: Schema.Types.ObjectId,
       required: true,
-      default: () => Types.ObjectId()
+      default: () => Types.ObjectId(),
     },
-    name: {
+    text: {
       type: String,
       required: true,
     },
-    backgroundImage: {
-      type: String,
-      required: true,
-    },
-    numberOfPossibleEndings: {
-      type: Number,
-      required: true,
-    },
-    firstStorySlide: {
+    nextStorySlide: {
       type: Schema.Types.ObjectId,
       ref: "StorySlide",
+      required: true,
     },
     createdAt: {
       type: Date,
@@ -38,10 +31,10 @@ const storySchema = new Schema(
       getters: true,
       virtuals: true,
     },
-    id: false
+    id: false,
   }
 );
 
-const Story = model("Story", storySchema);
+const StoryOption = model("StoryOption", storyOptionSchema);
 
-export default Story;
+export default StoryOption;

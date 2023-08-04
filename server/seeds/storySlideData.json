@@ -1,0 +1,72 @@
+[
+  {
+    "_id": "000000000000",
+    "text": "A wave of salty water splashes your face, waking you up.  You find yourself on a beach, foggy memories of an intense storm and flashes of lightning haunt you, but you can't remember exactly how you got here.  You worry about how you will return to civilization.  Looking down the beach, you see flotsam from some shipwreck in the distance.  The beach trails into a jungle, heavy with the underbrush of exotic plants.",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000003", "000000000004", "000000000005"],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000001",
+    "text": "You realize just how dizzy you are as you glance around, somewhat off balance.  In the sand you find a small flask, half-buried and half-full.  With some effort, you twist it's cap off.  Alcohol isn't the best hydration, but you do feel a little better having drank something.  Sifting around in the sand also nets you a lighter.  Unfortunately, there isn't much else to be found, just driftwood.  It occurs to you that you will need a fire to keep safe, and the nearing sunset doesn't bode well for your confidence.  Who knows, maybe some passing plane will see the fire and find you...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000006", "000000000007"],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000002",
+    "text": "The hot sun beats down on you as you trek down the beach.  Perhaps it was all the sweat in your eyes, but the flotsam was farther away than you thought.  The walk feels like forever and the hot sand hurts to walk on.  You finally arrive at the flotsam.  The sun is nearly setting, you can tell you haven't got much time to search before nightfall.  Soon, you'll have a hard time seeing anything...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": [],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000003",
+    "text": "The jungle beckons... Wading through the thick leaves,  you are only able to see just in front of you.  Breaks in the canopy  let the sun remind you hot hot it is and urge you to seek respite.  Nonetheless, you soldier on.  In the haze of exhausion, it seems the very roots of the trees reach up from the ground to confuse your steps.  You stumble.  Unable to keep from meeting the earth, you tumble until you come to rest in a small pool of water, cautiously you cup your hand, lips anticipating the cool drink its eager to meet.  Its safe to drink!  After submerging your face in this cool bit of solace, your eyes come to rest on a series of long bamboo stalks surrounding the opposite  side of the water source.  Tree branches litter the ground behind you.  Your brain wheels begin to turn...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": [],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000004",
+    "text": "The driftwood is everywhere, ripe for the talking.  You start your work, gathering and stacking the sun-bleached wood in a small pile.  The ever occasional crab gives you a scare, but for the most part, things go swimmingly (pun intended).  Soon enough you have yourself a neat little pile resembling a campfire.  You imagine the dusk is only about an hour away.  As you go to light the fire, you get to thinking...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000008", "000000000009"],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000005",
+    "text": "From jungle’s edge, you manage to gather a great many palm fronds and blades of tall grass.  Before long, you have a massive pile of various foliage on the shore, awaiting ignition. Dusk seems to be only about an hour away...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000010", "000000000011"],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000006",
+    "text": "With some effort, you manage to ignite the driftwood.  It doesn’t spread fast, but eventually the whole pile is burning.  White smoke fills the air as you keep a lookout for planes, helicopters, or ships.  To your surprise, you see one!  You wave frantically in the air at the passing ship.  It’s afar off, and fear ensues as you watch it continue to sail off into the distance, totally oblivious to you.  You drop to the ground accepting defeat. Nightfall creeps in...  You start to notice something... a burning sensation!  You're not literally burning, but your face feels like it's on fire!  After minutes of rubbing it, you realize it's the fire.  Somehow, it's causing you to feel strange!  You quickly snuff it out with your foot, leaving yourself in total darkness...  In horror, you come to the realization that this isn't just normal darkness, this is advanced darkness...  Standing alone in the inky black, you don't see what approaches, but you hear it.  You don't see claws, but you feel the laceration.  You don't see the ground, but you drop to it...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000001", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000007",
+    "text": "Asynchronously, you await nightfall...  The setting sun over a vast ocean is a beautiful thing to behold, if only for a moment.  As the daylight dims, you start to ignite your makeshift campfire.  Slight nervousness nudges at you as you realize just how dark it's actually getting.  Nonetheless, the campfire ignites and slowly begins to spread to the whole of the pile, a breach of light in endless dark.  The campfire comforts you as you sit on the beach, thinking of what you might do to escape tomorrow.  Over the waves and the crackling fire, you don't hear the padded feet making their way toward you...  The dancing fire hypnotizes you, perhaps to distract you of nearing danger, or maybe to comfort you in your final hour.  Whatever comfort it's providing you is soon betrayed, however, as it sheds light on the jaguar creeping out of the darkness...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000001", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000008",
+    "text": "With a few flicks of the light and a cupping of the hand to block the wind, you ignite the leaves and grass.  It spreads quickly, almost too quickly for your liking.  Nonetheless, it remains contained.  Fire secured, you begin looking for ships and planes.  The sky?  Bright and empty.  The sea?  A ship!  Some fishing ship a ways in the distance, you begin fanning the fire's black smoke with a palm frond, trying to catch it's attention.  To your delight, the ship does an about face and heads toward your island!  You eagerly await as the vessel comes to a stop offshore and a lifeboat with two men is lowered into the water.  Upon arrival at the shore, you are able to board the lifeboat and head back to the ship.  A school of eager sharks loiters just below as the little dinghy is rowed back to its parent ship, the Non Est Finis Fabula.  Finally, you're on you're way home!...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000000", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000009",
+    "text": "In your head, you do the math.  If I wait until nightfall, my fire might last me the night; else if I have a large enough fire going, I will be safe from hostile flora and fauna; else, I might not have enough foliage to last the night.  It all adds up!!  You wait patiently for the falling sun to nearly complete it's departure before going to light your fire.  Despite the rising wind, the foliage catches quickly and soon enough, you've got a bright mass of plasma burning orange and red in front of you.  You lay on the beach, gazing up at the stars.  The cozy warmth of you're makeshift campfire soothes you, making your eyelids heavy.  You're certain the campfire is big enough to keep what may lurk in the darkness away.  You find yourself slowly drifting to sleep... your in a desert now, the sun is beating down on you... you wake up!  You feel burning!  Some of the burning plant matter must have blown on top of you!  You desperately pat the fire on you, trying to extinguish it to no avail.  You race down the sand bank to the ocean water and hop it.  You pop your head out of the water and breathe a sigh of relief.  You're burnt, but alive.  The relief is real, that is, until you feel something brush past your foot in the water below.  You scramble trying to get up out of the water, but something bites your leg, pulling you under the sea...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000001", "000000000002"],
+    "endSlide": true
+  }
+]

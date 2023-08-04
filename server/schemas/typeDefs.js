@@ -5,7 +5,7 @@ const typeDefs = gql`
 
   scalar Upload
 
-  type UserStory {
+  type PlayedStory {
     story: Story
     endings: [StorySlide]
   }
@@ -17,7 +17,7 @@ const typeDefs = gql`
     email: String!
     password: String!
     bio: String
-    storiesPlayed: [UserStory]
+    storiesPlayed: [PlayedStory]
     profilePhoto: String
     createdAt: String
     updatedAt: String
@@ -26,22 +26,25 @@ const typeDefs = gql`
   type StoryOption {
     _id: ID!
     text: String!
-    nextStorySlide: StorySlide
+    nextStorySlide: StorySlide!
   }
 
   type StorySlide {
     _id: ID!
     text: String!
-    backgroundImage: String!
+    backgroundImage: String
     options: [StoryOption]
-    endSlide: Boolean
+    endSlide: Boolean!
   }
 
   type Story {
     _id: ID!
     name: String!
+    backgroundImage: String!
     numberOfPossibleEndings: Int!
-    firstStorySlide: StorySlide
+    firstStorySlide: StorySlide!
+    createdAt: String
+    updatedAt: String
   }
 
   type Auth {
@@ -83,61 +86,58 @@ const typeDefs = gql`
     singleUpload(file: Upload!, id: String!): Auth
     addStory(
       name: String!
+      backgroundImage: String!
       numberOfPossibleEndings: Int!
       firstStorySlide: StorySlideInput
     ): Story
 
     addStorySlide(
       text: String!
-      backgroundImage: String!
+      backgroundImage: String
       options: [StoryOptionInput]
-      endSlide: Boolean
+      endSlide: Boolean!
     ): StorySlide
 
     addStoryOption(text: String!, nextStorySlide: StorySlideInput): StoryOption
 
     updateStory(
       id: String!
-      name: String!
-      numberOfPossibleEndings: Int!
+      name: String
+      backgroundImage: String
+      numberOfPossibleEndings: Int
       firstStorySlide: StorySlideInput
     ): Story
 
-    updateUserStory(
+    updatePlayedStory(
       id: String!
-      name: String!
+      name: String
       endings: [StorySlideInput]
-    ): UserStory
+    ): PlayedStory
 
     updateStorySlide(
       id: String!
-      text: String!
-      backgroundImage: String!
+      text: String
+      backgroundImage: String
       options: [StoryOptionInput]
-      endSlide: Boolean
+      endSlide: Boolean!
     ): StorySlide
 
     updateStoryOption(
       id: String!
-      text: String!
+      text: String
       nextStorySlide: StorySlideInput
     ): StoryOption
   }
 
   input StorySlideInput {
-    text: String!
-    backgroundImage: String!
+    text: String
+    backgroundImage: String
     options: [StoryOptionInput]
     endSlide: Boolean
   }
 
   input StoryOptionInput {
-    text: String!
-    nextStorySlide: ID
-  }
-
-  input StoryOptionInput {
-    text: String!
+    text: String
     nextStorySlide: ID
   }
 `;

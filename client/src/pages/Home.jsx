@@ -18,7 +18,7 @@ export default function Home() {
     >
       <div>Home</div>
       {/* remove this button later */}
-      <Link to="/gameplay/1">
+      <Link to="/gameplay/000000000000">
         <Button>Play Game</Button>
       </Link>
     </Page>
