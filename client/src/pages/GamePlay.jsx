@@ -1,10 +1,12 @@
 import Page from "../components/Page";
 import { useParams } from "react-router-dom";
+import { audio } from '.../server/utils/audioAPI.js'
 
 const headContent = (
   <>
     <title>FlotSam - GamePlay</title>
     <meta name="description" content="This is the game play page of my app." />
+    <audio>${audio}</audio>
   </>
 );
 
