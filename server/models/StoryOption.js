@@ -3,6 +3,11 @@ import {Schema, model} from "mongoose"
 
 const storyOptionSchema = new Schema(
   {
+    _id: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      default: () => Types.ObjectId(),
+    },
     text: {
       type: String,
       required: true,
@@ -26,6 +31,7 @@ const storyOptionSchema = new Schema(
       getters: true,
       virtuals: true,
     },
+    id: false,
   }
 );
 

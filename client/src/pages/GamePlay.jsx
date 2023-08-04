@@ -14,8 +14,14 @@ export default function GamePlay() {
   const { gameId } = useParams();
 
   const { loading, error, data } = useQuery(QUERY_SINGLE_STORY, {
-    variables: { storySlideId: gameId },
+    variables: { storyId: gameId },
   });
+
+  // const { hloading, herror, hdata } = useQuery(QUERY_SINGLE_STORY_SLIDE, {
+  //   variables: { storyId: gameId },
+  // });
+
+  console.log(data)
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -23,7 +29,7 @@ export default function GamePlay() {
   return (
     // add isProtected to this line
     <Page className="authContainer"  headContent={headContent}>
-      <h1>Welcome to game play {gameId}</h1>
+      <h1>Welcome to {data.story.name}</h1>
     </Page>
   );
 }

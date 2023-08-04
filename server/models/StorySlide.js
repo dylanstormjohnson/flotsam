@@ -3,6 +3,11 @@ import {Schema, model} from "mongoose"
 
 const storySlideSchema = new Schema(
   {
+    _id: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      default: () => Types.ObjectId(),
+    },
     text: {
       type: String,
       required: true,
@@ -34,6 +39,7 @@ const storySlideSchema = new Schema(
       getters: true,
       virtuals: true,
     },
+    id: false,
   }
 );
 

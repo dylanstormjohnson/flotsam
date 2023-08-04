@@ -18,7 +18,7 @@ export const QUERY_ME = gql`
 
 export const QUERY_ALL_STORIES = gql`
   query getStoryQuery {
-    story {
+    stories {
       _id
       name
       numberOfPossibleEndings
@@ -29,7 +29,7 @@ export const QUERY_ALL_STORIES = gql`
 
 export const QUERY_ALL_STORY_SLIDES = gql`
   query getStorySlideQuery {
-    story {
+    storySlides {
       _id
       text
       backgroundImage
@@ -41,7 +41,7 @@ export const QUERY_ALL_STORY_SLIDES = gql`
 
 export const QUERY_ALL_STORY_OPTIONS = gql`
   query getStoryOptionQuery {
-    story {
+    storyOptions {
       _id
       text
       nextStorySlide
