@@ -48,7 +48,9 @@ const resolvers = {
 
     allStorySlides: async () => {
       try {
-        const allStorySlides = await StorySlide.find();
+        const allStorySlides = await StorySlide.find().populate(
+          "firstStorySlide"
+        );
 
         return allStorySlides;
       } catch (err) {
@@ -94,6 +96,19 @@ const resolvers = {
       } catch (err) {
         console.error(err);
         throw new Error("Failed to fetch the story option");
+      }
+    },
+  },
+
+  Story: {
+    firstStorySlide: async (parent) => {
+      try {
+        const slideId = parent.firstStorySlide;
+        const slide = await StorySlide.findById(slideId);
+        return slide;
+      } catch (err) {
+        console.error(err);
+        throw new Error("Failed to fetch the first story slide");
       }
     },
   },
@@ -159,11 +174,11 @@ const resolvers = {
         throw new AuthenticationError("User not found");
       }
     },
-   singleUpload: async function (parent, { file, id }) {
-    const { createReadStream, filename, encoding, mimetype } = await file;
-    const stream = createReadStream();
-    const __dirname = path.resolve();
-    const dirPath = '../client/src/assets/images/profileUploads'
+    singleUpload: async function (parent, { file, id }) {
+      const { createReadStream, filename, encoding, mimetype } = await file;
+      const stream = createReadStream();
+      const __dirname = path.resolve();
+      const dirPath = "../client/src/assets/profileUploads";
 
       fs.mkdirSync(path.join(__dirname, dirPath), { recursive: true });
 
@@ -171,6 +186,23 @@ const resolvers = {
       const filePath = path.join(__dirname, dirPath, f_name);
 
       // default directory is the current directory
+
+      // get all file names in directory
+      fs.readdir(path.resolve(dirPath), (err, fileNames) => {
+        if (err) throw err;
+
+        // iterate through the found file names
+        for (const name of fileNames) {
+          // if file name matches the pattern
+          if (pattern.test(name)) {
+            // try to remove the file and log the result
+            fs.unlink(path.resolve(name), (err) => {
+              if (err) throw err;
+              console.log(`Deleted ${name}`);
+            });
+          }
+        }
+      });
 
       const output = fs.createWriteStream(filePath);
 
