@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useLazyQuery } from '@apollo/client';
 import { QUERY_SINGLE_STORY, QUERY_SINGLE_STORY_SLIDE } from '../graphql/queries';
-// import { audio } from '.../server/utils/audioAPI.js'
+import { useEffect } from "react";
+import audio from '../utils/audioAPI'
+import spinner from '../assets/images/loadingSpinner/spinner.gif';
 
 const headContent = (
   <>
@@ -50,11 +52,3 @@ export default function GamePlay() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-
-  return (
-    // add isProtected to this line
-    <Page className="authContainer"  headContent={headContent}>
-      <h1>Welcome to {data.story.name}</h1>
-    </Page>
-  )
-}
