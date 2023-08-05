@@ -1,6 +1,10 @@
 @font-face {
-  font-family: myLogoFont;
-  src: url(./assets/pokemon/PokemonHollow.ttf);
+  font-family: spidermanFont;
+  src: url(./assets/fonts/The\ Amazing\ Spider-Man.ttf);
+}
+@font-face {
+  font-family:myLogoFont ;
+  src: url(./assets/fonts/PokemonHollow.ttf);
 }
 
 .logo {
@@ -15,14 +19,29 @@
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
     ),
-    url(./assets/BG1.png);
+    url(./assets/images/backgroundImages/pirate-ship-2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: bottom center;
+  background-position: center;
   width: 100%;
   height: 40%;
   margin: auto;
+  display: flex;
+  align-items: center;
+  padding:10%;
 }
+.homeContent {
+  color:white;
+  flex:0.4;
+}
+.homeContent h1 {
+  font-family: spidermanFont;
+  font-size: 70px;
+}
+.homeContent p {
+  margin-top: -40px;
+}
+
 
 .authContainer {
   display: flex;

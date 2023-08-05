@@ -3,11 +3,13 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useLazyQuery } from '@apollo/client';
 import { QUERY_SINGLE_STORY, QUERY_SINGLE_STORY_SLIDE } from '../graphql/queries';
+// import { audio } from '.../server/utils/audioAPI.js'
 import spinner from '../assets/images/loadingSpinner/spinner.gif';
 const headContent = (
   <>
     <title>FlotSam - GamePlay</title>
     <meta name="description" content="This is the game play page of my app." />
+   {/* <audio>${audio}</audio> */}
   </>
 );
 
