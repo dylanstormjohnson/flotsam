@@ -17,7 +17,7 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_ALL_STORIES = gql`
-  query getStoryQuery {
+  query getStoriesQuery {
     stories {
       _id
       name
@@ -28,7 +28,7 @@ export const QUERY_ALL_STORIES = gql`
 `;
 
 export const QUERY_ALL_STORY_SLIDES = gql`
-  query getStorySlideQuery {
+  query getStorySlidesQuery {
     storySlides {
       _id
       text
@@ -40,7 +40,7 @@ export const QUERY_ALL_STORY_SLIDES = gql`
 `;
 
 export const QUERY_ALL_STORY_OPTIONS = gql`
-  query getStoryOptionQuery {
+  query getStoryOptionsQuery {
     storyOptions {
       _id
       text
@@ -50,34 +50,46 @@ export const QUERY_ALL_STORY_OPTIONS = gql`
 `;
 
 export const QUERY_SINGLE_STORY = gql`
-  query Query($storyId: ID!) {
+  query getSingleStoryQuery($storyId: ID!) {
     story(id: $storyId) {
       name
       backgroundImage
       numberOfPossibleEndings
       firstStorySlide {
         _id
+        text
+        options {
+          text
+          nextStorySlide {
+            _id
+          }
+          _id
+        }
       }
     }
   }
 `;
 
 export const QUERY_SINGLE_STORY_SLIDE = gql`
-  query Query($storySlideId: ID!) {
+  query StorySlide($storySlideId: ID!) {
     storySlide(id: $storySlideId) {
       _id
       text
+      backgroundImage
       options {
+        text
+        nextStorySlide {
+          _id
+        }
         _id
       }
-      backgroundImage
       endSlide
     }
   }
 `;
 
 export const QUERY_SINGLE_STORY_OPTION = gql`
-  query Query($storyOptionId: ID!) {
+  query getSingleStoryOptionQuery($storyOptionId: ID!) {
     storyOption(id: $storyOptionId) {
       _id
       text

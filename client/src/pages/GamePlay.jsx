@@ -1,8 +1,9 @@
 import Page from "../components/Page";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useQuery } from '@apollo/client';
-import { QUERY_SINGLE_STORY, QUERY_SINGLE_STORY_SLIDE, QUERY_SINGLE_STORY_OPTION } from '../graphql/queries';
-
+import { useQuery, useLazyQuery } from '@apollo/client';
+import { QUERY_SINGLE_STORY, QUERY_SINGLE_STORY_SLIDE } from '../graphql/queries';
+import spinner from '../assets/images/loadingSpinner/spinner.gif';
 const headContent = (
   <>
     <title>FlotSam - GamePlay</title>
@@ -12,24 +13,60 @@ const headContent = (
 
 export default function GamePlay() {
   const { gameId } = useParams();
+  const [storyInfo, setStoryInfo] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(null);
 
-  const { loading, error, data } = useQuery(QUERY_SINGLE_STORY, {
+  const { loading: storyLoading, error: storyError, data: storyData } = useQuery(QUERY_SINGLE_STORY, {
     variables: { storyId: gameId },
   });
 
-  // const { hloading, herror, hdata } = useQuery(QUERY_SINGLE_STORY_SLIDE, {
-  //   variables: { storyId: gameId },
-  // });
+  useEffect(() => {
+    if(!storyData) return;
 
-  console.log(data)
+    setCurrentSlide({
+      ...storyData.story.firstStorySlide
+    });
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+    setStoryInfo({
+      ...storyData.story
+    });
 
-  return (
-    // add isProtected to this line
-    <Page className="authContainer"  headContent={headContent}>
-      <h1>Welcome to {data.story.name}</h1>
+  }, [storyData])
+
+  const [getSlide, { loading: slideLoading, error: slideError, data: currentSlideData }] = useLazyQuery(QUERY_SINGLE_STORY_SLIDE);
+
+  const handleButtonClick = async (slideId) => {
+    const { data } = await getSlide({
+      variables: {
+        storySlideId: slideId,
+      },
+    });
+
+    setCurrentSlide({
+      ...data.storySlide
+    })
+  };
+
+  console.log(storyInfo)
+  console.log(currentSlide)
+
+  return(
+    <Page className="authContainer bg-primary"  headContent={headContent}>
+    {storyInfo ? (
+      <div className="gameSpace d-flex align-items-center flex-column">
+        <h1 className="gameTitle">{storyInfo?.name}</h1>
+        <div className="gameContainer">
+          <img src={storyInfo?.backgroundImage} alt="Background" />
+        </div>
+        <p className="textContainer">{currentSlide?.text}</p>
+        <div className="optionsContainer d-flex align-items-center flex-column">
+          {currentSlide?.options.map((options) => (
+          <button className="options btn btn-outline-dark" onClick={() => handleButtonClick(options.nextStorySlide._id)} key={options._id}>{options.text}</button>
+          ))}
+        </div>
+      </div>
+      ) : null}
+      {storyLoading || slideLoading ? <img src={spinner} alt="loading" /> : null}
     </Page>
-  );
+  )
 }
