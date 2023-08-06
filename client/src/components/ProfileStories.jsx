@@ -1,54 +1,45 @@
 import Card from "react-bootstrap/Card";
 import React from "react";
 import { Link } from "react-router-dom";
-// import { useQuery, useMutation } from '@apollo/client';
-// import { QUERY_ALL_STORIES } from '../graphql/queries';
+import { useQuery } from "@apollo/client";
+import { QUERY_ALL_STORIES } from "../graphql/queries";
 
 const ProfileStories = () => {
+  const { loading, error, data } = useQuery(QUERY_ALL_STORIES);
+
+  if (loading) return <h1>Loading...</h1>;
+  if (error) {
+    console.log(error);
+    return `Error! ${error.message}`;
+  }
+
   return (
     <div className="storiesCon">
-      <Link
-        to="/gameplay/000000000000"
-        style={{
-          textDecoration: "none",
-          color: "inherit",
-        }}
-      >
-        <Card
+      {data?.allStories.map((story) => (
+        <Link
+          key={story._id}
+          to={"/gameplay/" + story._id}
           style={{
-            width: "18rem",
-            height: "5rem",
-            marginBottom: "10px",
-            cursor: "pointer",
+            textDecoration: "none",
+            color: "inherit",
           }}
         >
-          <Card.Body>
-            <Card.Title>Sample Story Title</Card.Title>
-            <Card.Text>Endings Found:3</Card.Text>
-          </Card.Body>
-        </Card>
-      </Link>
-      <Link
-        to="/gameplay/000000000001"
-        style={{
-          textDecoration: "none",
-          color: "inherit",
-        }}
-      >
-        <Card
-          style={{
-            width: "18rem",
-            height: "5rem",
-            marginBottom: "10px",
-            cursor: "pointer",
-          }}
-        >
-          <Card.Body>
-            <Card.Title>Sample Story Title</Card.Title>
-            <Card.Text>Endings Found:3</Card.Text>
-          </Card.Body>
-        </Card>
-      </Link>
+          <Card
+            style={{
+              width: "18rem",
+              height: "5rem",
+              marginBottom: "10px",
+              cursor: "pointer",
+            }}
+            className="shadow"
+          >
+            <Card.Body>
+              <Card.Title>Story Title: {story.name}</Card.Title>
+              <Card.Text>Endings Found: #</Card.Text>
+            </Card.Body>
+          </Card>
+        </Link>
+      ))}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_ME = gql`
   query getMeQuery {
@@ -18,11 +18,16 @@ export const QUERY_ME = gql`
 
 export const QUERY_ALL_STORIES = gql`
   query getStoriesQuery {
-    stories {
+    allStories {
       _id
       name
+      backgroundImage
       numberOfPossibleEndings
-      firstStorySlide
+      firstStorySlide {
+        _id
+      }
+      createdAt
+      updatedAt
     }
   }
 `;
