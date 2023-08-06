@@ -18,7 +18,9 @@ const songExample = '16154'
 
 export default function GamePlay() {
   const { gameId } = useParams();
-
+  const [storyInfo, setStoryInfo] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(null);
+  
   const { loading: storyLoading, error: storyError, data: storyData } = useQuery(QUERY_SINGLE_STORY, {
     variables: { storyId: gameId },
   });
