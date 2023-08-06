@@ -5,11 +5,14 @@ import graphqlUploadExpress from "graphql-upload/graphqlUploadExpress.mjs";
 import dotenv from 'dotenv';
 dotenv.config();
 
+import audio from './utils/audioAPI.js';
+
 // Import the two parts of a GraphQL schema
 import { typeDefs, resolvers } from './schemas/index.js'
 import { authMiddleware } from './utils/auth.js'
 
 import db from './config/connection.js'
+
 
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
@@ -34,6 +37,13 @@ app.get('/', (req, res) => {
   //res.sendFile(path.join(__dirname, '../client/'));
   res.send("working")
 })
+
+// app.get('/api/audio/:song', async (req, res) => {
+//   const { song } = req.params;
+//   const audioData = await audio(song)
+
+//   res.json(audioData);
+// });
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {

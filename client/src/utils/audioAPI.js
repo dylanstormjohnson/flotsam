@@ -1,11 +1,9 @@
-import fetch from 'node-fetch';
-
 const options = {
   method: 'GET',
   headers: {
     accept: 'application/vnd.api+json',
     'content-type': 'application/vnd.api+json',
-    Authorization: 'Token ${process.env.SOUNDSTRIPE_API_KEY}'
+    Authorization: 'Token vwHorKgXrg5k30zSGo3GWa8swlVftI9XdYxPejtQwSFVLvAlYqEzNUnnNxzwNBvg'
   }
 };
 const songExample = '6154'
@@ -26,5 +24,7 @@ const audio = async (song) => {
 }
 
 export default audio;
+
+
 
 
