@@ -1,23 +1,27 @@
 {
-  "name": "project-3-starter-code",
+  "name": "flotsam-giphy",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node server.js",
     "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
-    "seed": "cd server && npm run seed",
+    "seed": "giphy": "node seeds/giphySeeds.js" "cd server && npm run seed",
+    
     "build": "cd client && npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^5.1.0"
-  },
   "dependencies": {
+    "apollo-server-express": "^3.12.0",
     "axios": "^1.4.0",
-    "bootstrap": "^5.3.1"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.3.0",
+    "graphql-tools": "^9.0.0",
+    "mongodb": "^5.7.0"
   }
 }
