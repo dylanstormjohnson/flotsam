@@ -2,7 +2,7 @@
   {
     "_id": "000000000000",
     "name": "Flotsam",
-    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "backgroundImage": "/assets/images/backgroundImages/Flotsam/Flotsam_01.png",
     "numberOfPossibleEndings": 17,
     "firstStorySlide": "000000000000"
   }

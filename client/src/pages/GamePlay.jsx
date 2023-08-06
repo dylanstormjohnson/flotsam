@@ -1,9 +1,12 @@
 import Page from "../components/Page";
+import React, { useState, useEffect } from "react";
+
 import { useParams } from "react-router-dom";
-import { useQuery } from '@apollo/client';
-import { QUERY_SINGLE_STORY, QUERY_SINGLE_STORY_SLIDE, QUERY_SINGLE_STORY_OPTION } from '../graphql/queries';
-import { useEffect } from "react";
+import { useQuery, useLazyQuery } from '@apollo/client';
+import { QUERY_SINGLE_STORY, QUERY_SINGLE_STORY_SLIDE } from '../graphql/queries';
 import audio from '../utils/audioAPI'
+import spinner from '../assets/images/loadingSpinner/spinner.gif';
+
 const headContent = (
   <>
     <title>FlotSam - GamePlay</title>
@@ -15,6 +18,10 @@ const songExample = '16154'
 
 export default function GamePlay() {
   const { gameId } = useParams();
+
+  const { loading: storyLoading, error: storyError, data: storyData } = useQuery(QUERY_SINGLE_STORY, {
+    variables: { storyId: gameId },
+  });
 
   const getAudio = async (song) => {
     try {
@@ -32,8 +39,54 @@ export default function GamePlay() {
     getAudio(songExample)
   }, []);
 
-  return (
-    <Page className="authContainer"  headContent={headContent}>
+  useEffect(() => {
+    if(!storyData) return;
+
+    setCurrentSlide({
+      ...storyData.story.firstStorySlide
+    });
+
+    setStoryInfo({
+      ...storyData.story
+    });
+
+  }, [storyData])
+
+  const [getSlide, { loading: slideLoading, error: slideError, data: currentSlideData }] = useLazyQuery(QUERY_SINGLE_STORY_SLIDE);
+
+  const handleButtonClick = async (slideId) => {
+    const { data } = await getSlide({
+      variables: {
+        storySlideId: slideId,
+      },
+    });
+
+
+    setCurrentSlide({
+      ...data.storySlide
+    })
+  };
+
+  console.log(storyInfo)
+  console.log(currentSlide)
+
+  return(
+    <Page className="authContainer bg-primary"  headContent={headContent}>
+    {storyInfo ? (
+      <div className="gameSpace d-flex align-items-center flex-column">
+        <h1 className="gameTitle">{storyInfo?.name}</h1>
+        <div className="gameContainer">
+          <img src={storyInfo?.backgroundImage} alt="Background" />
+        </div>
+        <p className="textContainer">{currentSlide?.text}</p>
+        <div className="optionsContainer d-flex align-items-center flex-column">
+          {currentSlide?.options.map((options) => (
+          <button className="options btn btn-outline-dark" onClick={() => handleButtonClick(options.nextStorySlide._id)} key={options._id}>{options.text}</button>
+          ))}
+        </div>
+      </div>
+      ) : null}
+      {storyLoading || slideLoading ? <img src={spinner} alt="loading" /> : null}
     </Page>
   );
 }
