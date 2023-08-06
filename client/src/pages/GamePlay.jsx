@@ -1,6 +1,6 @@
 import Page from "../components/Page";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import {
   QUERY_SINGLE_STORY,
@@ -8,6 +8,8 @@ import {
 } from "../graphql/queries";
 // import { audio } from '.../server/utils/audioAPI.js'
 import spinner from "../assets/images/loadingSpinner/spinner.gif";
+import { useSelector } from "react-redux";
+import { getUser } from "../redux/slices/userSlice";
 const headContent = (
   <>
     <title>FlotSam - GamePlay</title>
@@ -46,6 +48,12 @@ export default function GamePlay() {
     { loading: slideLoading, error: slideError, data: currentSlideData },
   ] = useLazyQuery(QUERY_SINGLE_STORY_SLIDE);
 
+  const { isAuthenticated } = useSelector(getUser());
+
+  if (!isAuthenticated) {
+    return <Navigate to="/signup" />;
+  }
+
   const handleButtonClick = async (slideId) => {
     const { data } = await getSlide({
       variables: {
@@ -62,7 +70,11 @@ export default function GamePlay() {
   console.log(currentSlide);
 
   return (
-    <Page className="authContainer gamePlayCon" headContent={headContent}>
+    <Page
+      className="authContainer gamePlayCon"
+      isProtected
+      headContent={headContent}
+    >
       {storyInfo ? (
         <div className="gameSpace d-flex align-items-center flex-column">
           <h1 className="gameTitle">{storyInfo?.name}</h1>
