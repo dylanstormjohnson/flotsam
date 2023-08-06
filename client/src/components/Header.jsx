@@ -8,6 +8,7 @@ const styles = {
   container: {
     display: "flex",
     flexDirection: "row",
+    flexWrap: "wrap",
     justifyContent: "space-between",
     alignItems: "center",
     position: "fixed",

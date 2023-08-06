@@ -48,6 +48,7 @@
   gap: 20px;
   width: 100%;
   margin-top: 40px;
+  padding: 0px 10px;
 }
 .authForm {
   width: 40%;
@@ -58,11 +59,14 @@
 }
 
 .profileStories {
-  padding: 10px;
+  padding: 30px 20px;
 }
 .profileStories > div {
   display: flex;
   gap: 10px;
+}
+.storiesCon {
+  display: flex;
 }
 
 .unauth {
@@ -137,3 +141,18 @@ footer img {
   animation: slideInRight 500ms ease-in;
   animation-direction: reverse;
 } */
+
+@media screen and (max-width: 750px) {
+  .homeContent {
+    flex: 1;
+  }
+  .authContainer {
+    flex-direction: column;
+  }
+  .authForm {
+    width: 90%;
+  }
+  .storiesCon {
+    flex-direction: column;
+  }
+}
