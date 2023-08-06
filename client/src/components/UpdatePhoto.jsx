@@ -6,20 +6,18 @@ import { useMutation } from "@apollo/client";
 import { SINGLE_UPLOAD_MUTATION } from "../graphql/mutations";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, setAuthenticatedUser } from "../redux/slices/userSlice";
-import AuthService from "../utils/auth"
+import AuthService from "../utils/auth";
 
 const fileTypes = ["image/png", "image/jpg", "image/jpeg"];
 
 const UpdatePhoto = () => {
   const [err, setErr] = useState("");
-   const [successMsg, setSuccessMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
   const [photo, setPhoto] = useState({ preview: "", data: "" });
 
- const {userData}= useSelector(getUser())
- const dispatch = useDispatch()
-  const [singleUpload, { loading }] = useMutation(
-    SINGLE_UPLOAD_MUTATION
-  );
+  const { userData } = useSelector(getUser());
+  const dispatch = useDispatch();
+  const [singleUpload, { loading }] = useMutation(SINGLE_UPLOAD_MUTATION);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -37,24 +35,24 @@ const UpdatePhoto = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    setErr("")
+    setErr("");
 
     if (!photo.data) return setErr("Choose a file");
 
     // submit to backend
     try {
       // Execute mutation and pass in defined parameter data as variables
-      const {data} = await singleUpload({
-        variables: { file: photo.data, id:userData._id }
+      const { data } = await singleUpload({
+        variables: { file: photo.data, id: userData._id },
       });
-      
+
       setSuccessMsg("Successfully Uploaded Photo");
-      setPhoto({preview:"",data:""});
-      setTimeout(() => setSuccessMsg(''), 3000);
+      setPhoto({ preview: "", data: "" });
+      setTimeout(() => setSuccessMsg(""), 3000);
       // call redux set auth func
       dispatch(setAuthenticatedUser(data.singleUpload.user));
       AuthService.login(data.singleUpload.token);
-      //
+      window.location.reload();
     } catch (err) {
       setErr(err.message);
       console.log("ERROR: ", err);
@@ -69,7 +67,7 @@ const UpdatePhoto = () => {
           {err}
         </Alert>
       )}
-       {successMsg && (
+      {successMsg && (
         <Alert key="success" variant="success">
           {successMsg}
         </Alert>
@@ -77,18 +75,22 @@ const UpdatePhoto = () => {
 
       {photo.preview ? (
         <img className="profileImg" src={photo.preview} alt="profile" />
-      ) 
-      : userData?.profilePhoto ?  
-      <img className="profileImg" src={require(`../assets/images/profileUploads/${userData.profilePhoto}`)} alt="user profile" /> : null}
+      ) : userData?.profilePhoto ? (
+        <img
+          className="profileImg"
+          src={require(`../assets/images/profileUploads/${userData.profilePhoto}`)}
+          alt="user profile"
+        />
+      ) : null}
 
       <Form.Control onChange={handleFileChange} type="file" />
-      
-       {loading ? (
+
+      {loading ? (
         <Button type="submit" disabled={true}>
           Loading...
         </Button>
       ) : (
-       <Button type="submit">Update Photo</Button>
+        <Button type="submit">Update Photo</Button>
       )}
     </form>
   );
