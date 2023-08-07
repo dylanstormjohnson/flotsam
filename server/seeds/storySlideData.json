@@ -17,14 +17,14 @@
     "_id": "000000000002",
     "text": "The hot sun beats down on you as you trek down the beach.  Perhaps it was all the sweat in your eyes, but the flotsam was farther away than you thought.  The walk feels like forever and the hot sand hurts to walk on.  You finally arrive at the flotsam.  The sun is nearly setting, you can tell you haven't got much time to search before nightfall.  Soon, you'll have a hard time seeing anything...",
     "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
-    "options": [],
+    "options": ["000000000012", "000000000013"],
     "endSlide": false
   },
   {
     "_id": "000000000003",
     "text": "The jungle beckons... Wading through the thick leaves,  you are only able to see just in front of you.  Breaks in the canopy  let the sun remind you hot hot it is and urge you to seek respite.  Nonetheless, you soldier on.  In the haze of exhausion, it seems the very roots of the trees reach up from the ground to confuse your steps.  You stumble.  Unable to keep from meeting the earth, you tumble until you come to rest in a small pool of water, cautiously you cup your hand, lips anticipating the cool drink its eager to meet.  Its safe to drink!  After submerging your face in this cool bit of solace, your eyes come to rest on a series of long bamboo stalks surrounding the opposite  side of the water source.  Tree branches litter the ground behind you.  Your brain wheels begin to turn...",
     "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
-    "options": [],
+    "options": ["000000000020", "000000000021"],
     "endSlide": false
   },
   {
@@ -67,6 +67,139 @@
     "text": "In your head, you do the math.  If I wait until nightfall, my fire might last me the night; else if I have a large enough fire going, I will be safe from hostile flora and fauna; else, I might not have enough foliage to last the night.  It all adds up!!  You wait patiently for the falling sun to nearly complete it's departure before going to light your fire.  Despite the rising wind, the foliage catches quickly and soon enough, you've got a bright mass of plasma burning orange and red in front of you.  You lay on the beach, gazing up at the stars.  The cozy warmth of you're makeshift campfire soothes you, making your eyelids heavy.  You're certain the campfire is big enough to keep what may lurk in the darkness away.  You find yourself slowly drifting to sleep... your in a desert now, the sun is beating down on you... you wake up!  You feel burning!  Some of the burning plant matter must have blown on top of you!  You desperately pat the fire on you, trying to extinguish it to no avail.  You race down the sand bank to the ocean water and hop it.  You pop your head out of the water and breathe a sigh of relief.  You're burnt, but alive.  The relief is real, that is, until you feel something brush past your foot in the water below.  You scramble trying to get up out of the water, but something bites your leg, pulling you under the sea...",
     "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
     "options": ["000000000001", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000010",
+    "text": "Fortunately, the crates must have been battered in the water - some are easy enough to break into.  Alas, it appears whatever crashed was transporting mostly documents, the business dealings of some company far away.  Important to them, useless to you.  Desperation washes over you as you break into the last box to find... an airplane survival kit!  In it you find water, rations, even an old radio!  Refreshed and fed, you flick on the radio.  It's battery is nearly dead.  In the kit, you find a flare gun but it's flares are gone...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000014", "000000000015"],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000011",
+    "text": "No time to waste!  You flip on the radio.  It’s dying battery flashes red as you begin checking different frequencies.  Finally, you find one with people talking.  It sounds like a helicopter!  You start talking, explaining your situation.  The man on the other side asks you to describe the island.  After a vivid description by the wordsmith you are, the man says: “There’s a few islands nearby, I’ll look for ya.  I’ll be the white helicopter with a red stripe...”  The static fizzles out as the radio’s battery dies.  You eagerly search the sky for the helicopter.  Your excitement starts to fade as the sky turns a shade of green, then yellow, then orange, then red, getting darker and darker.  Then, you see it, the helicopter!  You begin waving your arms as the helicopter and shouting.  It flies by, unaware.  Your smile fades as darkness looms, consuming you in a pitch black nightmare.  A step crushes a shell.  It wasn’t you.  The rustling of sand.  The nearing of something.  You’ve no idea what’s here with you, but your certain you’re not long for this world...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000001", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000012",
+    "text": "It’s almost dark, you might need the flares.  You begin searching.  First, you check around the crate in the sand.  Nothing.  Next, under the crate.  Still nothing.  Finally, you lift the survival kit out from the crate to reveal a small fireproof box labeled flares underneath it.  Success!  You load a flare into the gun, then look to the sky.  The sun has almost set...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000016", "000000000017"],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000013",
+    "text": "No time to dilly-dally!  You turn on the radio.  A flashing red image of a battery lets you know you haven’t got much time.  You begin turning the dial, checking different frequencies.  A lot of static, then voices!  It’s a helicopter pilot!  You talk about your situation, asking for help.  He asks for a description of the island, to which he responds: “There’s a few islands nearby, I’ll look for ya.  I’ll be the white helicopter with a red stripe...”  Fuzzier and fuzzier, the static dies down as the radio’s battery does.  You look to the sky, seeking the helicopter.  The setting sun doesn’t bode well for your confidence... Soon, you can barely see anything.  Then, in the distance, you hear it, the helicopter!  You aim your flare gun high and fire.  The helicopter noises grow louder and louder as it’s bright lights grow near to you.  It lands in the beach.  “You call for a taxi?”  the pilot jokes as you climb on board.  As the helicopter rises, you breath a sign of relief.  Finally, time to go home!",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000000", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000014",
+    "text": "Mind set, you wait.  The sun doesn’t take long to set.   Leaving you in darkness.  After a while, your eyes adjust affording you some semblance of sight.  The shadows play tricks on you, granting scary thoughts of people, nearby and hidden.  The shadows approach, ducking behind the barrels you saw earlier.  There’s no one there, there can’t be, right?  A shadow begins to walk straight toward you.  It’s not real, it can’t be!  It’s approach is unfettered by your assertions against its existence.  Your fairly certain you won’t be surviving this night after all...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000001", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000015",
+    "text": "You find their lids to be sealed. Still, you find a large enough rock, and splinter the edge of the nearest barrel forming a hole.  First barrel, bananas.  Nice!  You go to break open the second barrel... rum.  It’ll do.  As you break into the third barrel, one of its  metal bands snaps with the wood.  It rubber bands, slamming into your arm.  You fall back, the deep cut burning your arm.  It hurts, but it’s not life threatening.  You’ll have to do something about it...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000018", "000000000019"],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000016",
+    "text": "You head out on the sand bank to where the sand meets the water.  Your not fond of how steep it looks, but the water isn’t deep enough closer to shore.  Finally, you reach the edge , dipping your arm into the salty water.  It burns, but your pretty sure that’s what it’s supposed to do.  Your blood filters into the water, dissolving into it.  Alas, you don’t see the shark on approach.  It’s eyes roll back as it swims into you, mouth wide open.  You struggle as it latches onto your arm, yanking you under.  It all fades to black as the shark relieves you of the whole arm...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000001", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000017",
+    "text": "You have to stop the bleeding before nightfall.  You begin searching for rags or cloth of any kind in the flotsam.  The looming darkness is disheartening, and minutes of searching has proven fruitless.  Finally, you find something, a piece of an old sail.  You plop to the ground, sitting down for just a second and beginning to wrap up your arm.  The dusk is almost over, nightfall nears.  Your eyes trail to the jungle that lines the beach.  It’s palms bear coconut at their tops.  They swap in the wind.  Something catches your eye.  One of the coconuts is... moving?  It slowly descends its palm, heading to the ground.  Then another, then another as well.  You’ve never seen anything like it!  On a hundred palms, a thousand coconuts are climbing down. Once they make it to the ground, they begin marking their way toward you.  As they draw near, you realize they aren’t coconuts at all.  They’re crabs, big ones that look like coconuts with claws that blend into the palms!  An their huge!  Some four feet long!  Your amazement is stifled as you realize they’re headed straight for you.  The coconut crabs crowd around you, pulling you apart...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000001", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000018",
+    "text": "You set about your work breaking the stocks at their roots.  At first it seems difficult, but a glint of reflected sunlight catches your eye.  Flint!  It’s sharp edge aids your venture.  Soon enough, you’ve gathered yourself a fair lot of bamboo.   You think to yourself... what else?  Rope.  Something to bind the stalks together.  It’ll have to be makeshift.  You look around at your options.  Tall grass lines much of the jungle brush.  Vines hang low from the estranged trees.  What to choose...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000027", "000000000023"],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000019",
+    "text": "You use your flint to cut the tall grass at it’s base.  Alas, collecting grass is a slow process, and about as fun as watching it grow.  Eventually, you have plenty to work with.  You begin the arduous process of winding it together and weaving it through the bamboo.  After a while, you have yourself a nice little raft.  As you drag it back to shore, you realize how hungry you’ve become.  It’s getting late, you realize once you get on the water, you won’t have any ability to eat until your rescued.  You might have just enough time to find food before dark.  You glance up at the trees.  Bananas hang in bunches from some, pomegranates like leaves from others...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000024", "000000000026", "000000000030"],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000020",
+    "text": "The vines are the obvious option!  You walk amongst the vines, tugging at them to find loose ones.  You imagines you’ll only need three or four.  Their sheer length is dictates you won’t need much more than that.  You manage to garner together three long vines.  One more, you’re making great time.  The sunset is still perhaps an hour away.  As you tug on the vines, you didn’t think anything of the really dark one you were getting close to.  You don’t give a second thought to tugging on it like the rest of the vines.  Yet you pull it down to see... a snake!  It bites you in the arm!  You flail, knocking it off.  It slithers away into the underbrush.  Everything you can see begins to double as your vision begins to blur.  Your legs weaken.  You drop to the ground.  Everything fades to black...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000001", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000021",
+    "text": "Something about this island gives you the willies, you don’t want to be caught out in the dark here.  You grab your raft and make for the sea.  Using a driftwood piece, you row yourself out to see.  You’re a ways from the island when you hear it, the creaking of the branches below you.  You remember an old saying you heard once:   “If a ship is strong, the ocean's tides do not bother it.”  Your ship is not strong.  Suddenly, several branches snap at once, plunging you into the water.  You surface again and grab the now broken raft, at least you can hold onto it and float, right?  The shark fin circling you in the water says otherwise.  It circles about three times before heading right at you.  A struggle and a splash, then the water went red...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000001", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000022",
+    "text": "Of course, bananas are the way to go!  Even one of those bushels has like twenty bananas attached to it.  Their trees are taller than the pomegranate’s, but you’ll only have to make the climb once.  Using the vines for support, you manage to climb the tree, hoisting yourself up higher and higher.  On reaching the bananas, you start to pick them off, dropping them down to the underbrush below to be collected later.  Something in you peripheral vision catches your attention.  A spider!  On your hand!  You panic as it bites down, causing you to fall.  As you painfully hit the ground, your vision begins to blur and fade...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000001", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000023",
+    "text": "Unlike the bananas, the pomegranates hang low.  You don’t have to climb too high to pick several off the trees.  Pretty soon, you’ve gathered almost twenty of them.  You place them on the twiggy raft and drag it to the beach.  The ocean calls you...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000024"],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000024",
+    "text": "You start collecting the sticks beside the pond.  It doesn’t take long for you to accrue a good amount of branches, plenty for a raft.  You bring them together in a pile.  Now what?  To tie them together.  You look around. Tall grass is everywhere, mixed into the jungle brush.  You also see vines hanging from the canopy.  You consider the options...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000022", "000000000023"],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000025",
+    "text": "It’s high noon and high time you got out of here before high tide.  You laugh at your terrible joke as you drag you raft to the shoreline.  You scarcely want to be here after nightfall, so you grab a plank of driftwood and row yourself out to see.  The bamboo creaks, but holds.  You breath a sign of relief as you press onward into the ocean blue.  An old saying comes to mind... “It isn't wise to test the depth of a river with both feet.”  Despite the gnawing hunger, you actually manage to sleep that night.  And the next.  And the next.  Until you succumb to the debilitating hunger, that is...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000001", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000026",
+    "text": "With effort and hard work, you start uprooting the grass.  It’s sweat inducing, but you do manage to get plenty of grass after a while.  You wind it together into makeshift rope, and start tying the branches together to make a raft.  Working you way back to shore with raft in hand.  You start to feel how hungry you are.  What if you’re not rescued for a long time on the water.  You might need food.... You look to the treetops.  Sure enough, there are bushels of bananas and ripe pomegranates dotted about.  Should I just go, or get food, you think to yourself...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000025", "000000000026", "000000000028"],
+    "endSlide": false
+  },
+  {
+    "_id": "000000000027",
+    "text": "A ship is safe at the docks, but that’s not what ships are made for!  You cast your raft into the water, using driftwood to row your self toward freedom!  Several days go by.  But the pomegranates are enough to sustain you and keep you going.  On day four, you eat your last pomegranate.  On day five, hunger sets in again.  You last out for two more days, desperation creeping into your thoughts.  On day seven, you lay there te ages by hunger.  A shadow overtakes you.  You look up.  It’s a ship!  The crew of a ferry saw you, they hoist you up to their ship and give you food and drink, your saved!",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000000", "000000000002"],
+    "endSlide": true
+  },
+  {
+    "_id": "000000000028",
+    "text": "Unlike the bananas, the pomegranates hang low.  You don’t have to climb too high to pick several off the trees.  Pretty soon, you’ve gathered almost twenty of them.  You place them on the twiggy raft and drag it to the beach.  The ocean calls you...",
+    "backgroundImage": "./assets/images/backgroundImages/Flotsam/Flotsam_01.png",
+    "options": ["000000000031"],
     "endSlide": true
   }
 ]

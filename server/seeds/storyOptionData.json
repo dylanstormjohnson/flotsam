@@ -62,21 +62,96 @@
   {
     "_id": "000000000012",
     "text": "Check the crates.  (There's got to be something useful in one of these...)",
-    "nextStorySlide": "000000000000"
+    "nextStorySlide": "000000000010"
   },
   {
     "_id": "000000000013",
     "text": "Check the barrels.  (Surely one of these has water in it...)",
-    "nextStorySlide": "000000000000"
+    "nextStorySlide": "000000000015"
   },
   {
     "_id": "000000000014",
-    "text": "Gather the bamboo stalks.  (Surely these’ll float, right?...)",
-    "nextStorySlide": "000000000000"
+    "text": "Call for help!  (Time to get out of here!...)",
+    "nextStorySlide": "000000000011"
   },
   {
     "_id": "000000000015",
+    "text": "Look for flares.  (They’ve got to be around here somewhere...)",
+    "nextStorySlide": "000000000012"
+  },
+  {
+    "_id": "000000000016",
+    "text": "Call for help now!  (Time to get out of here!...)",
+    "nextStorySlide": "000000000013"
+  },
+  {
+    "_id": "000000000017",
+    "text": "Wait until sunrise.  (They might not see me...)",
+    "nextStorySlide": "000000000014"
+  },
+  {
+    "_id": "000000000018",
+    "text": "Treat wound in the ocean.  (Salt water is good for wounds, right?...)",
+    "nextStorySlide": "000000000016"
+  },
+  {
+    "_id": "000000000019",
+    "text": "Look for rags.  (There must be something in the salvage...)",
+    "nextStorySlide": "000000000017"
+  },
+  {
+    "_id": "000000000020",
+    "text": "Gather the bamboo stalks.  (Surely these’ll float, right?...)",
+    "nextStorySlide": "000000000018"
+  },
+  {
+    "_id": "000000000021",
     "text": "Gather the branches.  (Most boats are made of wood...)",
-    "nextStorySlide": "000000000000"
+    "nextStorySlide": "000000000024"
+  },
+  {
+    "_id": "000000000022",
+    "text": "Gather tall grass (Wound together, this might hold...)",
+    "nextStorySlide": "000000000026"
+  },
+  {
+    "_id": "000000000023",
+    "text": "Gather vines (They are already at length, this could be good...)",
+    "nextStorySlide": "000000000020"
+  },
+  {
+    "_id": "000000000024",
+    "text": "Set sail!  (Let’s get out of here!...)",
+    "nextStorySlide": "000000000025"
+  },
+  {
+    "_id": "000000000025",
+    "text": "Set sail!  (Let’s get out of here!...)",
+    "nextStorySlide": "000000000021"
+  },
+  {
+    "_id": "000000000026",
+    "text": "Gather bananas.  (Being bunched together will make gathering en masse easier...)",
+    "nextStorySlide": "000000000022"
+  },
+  {
+    "_id": "000000000027",
+    "text": "Gather tall grass (Wound together, this might hold...)",
+    "nextStorySlide": "000000000019"
+  },
+  {
+    "_id": "000000000028",
+    "text": "Gather pomegranates.  (Nice and juicy, these might also hydrate you...)",
+    "nextStorySlide": "000000000021"
+  },
+  {
+    "_id": "000000000030",
+    "text": "Gather pomegranates.  (Nice and juicy, these might also hydrate you...)",
+    "nextStorySlide": "000000000028"
+  },
+  {
+    "_id": "000000000031",
+    "text": "Set sail!  (Let’s get out of here!...)",
+    "nextStorySlide": "000000000027"
   }
 ]
