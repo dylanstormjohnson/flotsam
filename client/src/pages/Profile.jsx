@@ -12,7 +12,7 @@ const headContent = (
 export default function Profile() {
   return (
     <Page
-      className="authContainer"
+      className="authContainer normalBackground"
       isProtected
       headContent={headContent}
     >

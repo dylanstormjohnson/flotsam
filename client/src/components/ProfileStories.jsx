@@ -30,12 +30,18 @@ const ProfileStories = () => {
               height: "5rem",
               marginBottom: "10px",
               cursor: "pointer",
+              backgroundImage: `url(${story.backgroundImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
             className="shadow"
           >
-            <Card.Body>
-              <Card.Title>Story Title: {story.name}</Card.Title>
-              <Card.Text>Endings Found: #</Card.Text>
+            <Card.Body className="d-flex align-items-center justify-content-center">
+              <Card.Title style={{
+                  color: "white",
+                  textShadow: "1px 1px 2px black",
+                }}>{story.name}</Card.Title>
+              {/* <Card.Text>Endings Found: #</Card.Text> */}
             </Card.Body>
           </Card>
         </Link>

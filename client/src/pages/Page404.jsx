@@ -9,7 +9,7 @@ const headContent = (
 
 export default function Page404() {
   return (
-    <Page isProtected={false} headContent={headContent}>
+    <Page className="normalBackground" isProtected={false} headContent={headContent}>
       <div>404 Page Not Found</div>
     </Page>
   );
