@@ -35,7 +35,7 @@ A text-based adventure game!!
 
 ## Credits
 
-- This website was coded by Dylan Johnson [Dylan's GitHub account](https://github.com/dylanstormjohnson), Noemi Couch [Noemi's GitHub account](https://github.com/CouchNoemi), Beau Hillier [Beau's GitHub account](https://github.com/beaunaturale), Kwyra Allen [Kwyra's GitHub account](https://github.com/kcarter9789), and Long Yang [Long's GitHub account](https://github.com/TojiCodes).
+- This website was coded by Dylan Johnson [Dylan's GitHub account](https://github.com/dylanstormjohnson), Noemi Couch [Noemi's GitHub account](https://github.com/CouchNoemi), Beau Hillier [Beau's GitHub account](https://github.com/beaunaturale), Kywra Allen [Kywra's GitHub account](https://github.com/kcarter9789), and Long Yang [Long's GitHub account](https://github.com/TojiCodes).
 
 ## License
 
