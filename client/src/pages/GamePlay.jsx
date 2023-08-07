@@ -1,6 +1,6 @@
 import Page from "../components/Page";
 import React, { useState, useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, Link } from "react-router-dom";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import {
   QUERY_SINGLE_STORY,
@@ -54,7 +54,8 @@ export default function GamePlay() {
     return <Navigate to="/signup" />;
   }
 
-  const handleButtonClick = async (slideId) => {
+const handleButtonClick = async (slideId, optionsText) => {
+
     const { data } = await getSlide({
       variables: {
         storySlideId: slideId,
@@ -64,7 +65,7 @@ export default function GamePlay() {
     setCurrentSlide({
       ...data.storySlide,
     });
-  };
+};
 
   console.log(storyInfo);
   console.log(currentSlide);
@@ -84,13 +85,23 @@ export default function GamePlay() {
           <p className="textContainer">{currentSlide?.text}</p>
           <div className="optionsContainer d-flex align-items-center flex-column">
             {currentSlide?.options.map((options) => (
+              options.text === "Go to Stories Page" ? (
               <button
                 className="options btn btn-outline-light w-100 mb-2"
-                onClick={() => handleButtonClick(options.nextStorySlide._id)}
+                onClick={() => handleButtonClick(options.nextStorySlide._id, options.text)}
+                key={options._id}
+              >
+                <Link to="/stories">{options.text}</Link>
+              </button>
+              ) : (
+              <button
+                className="options btn btn-outline-light w-100 mb-2"
+                onClick={() => handleButtonClick(options.nextStorySlide._id, options.text)}
                 key={options._id}
               >
                 {options.text}
               </button>
+              )
             ))}
           </div>
         </div>
