@@ -86,13 +86,7 @@ const handleButtonClick = async (slideId, optionsText) => {
           <div className="optionsContainer d-flex align-items-center flex-column">
             {currentSlide?.options.map((options) => (
               options.text === "Go to Stories Page" ? (
-              <button
-                className="options btn btn-outline-light w-100 mb-2"
-                onClick={() => handleButtonClick(options.nextStorySlide._id, options.text)}
-                key={options._id}
-              >
-                <Link to="/stories">{options.text}</Link>
-              </button>
+                <Link key={options._id} className="btn btn-outline-light w-100 mb-2" to="/stories">{options.text}</Link>
               ) : (
               <button
                 className="options btn btn-outline-light w-100 mb-2"

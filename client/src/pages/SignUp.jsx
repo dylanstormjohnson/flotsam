@@ -27,7 +27,7 @@ export default function SignUp() {
 
   return (
     <Page
-      className="authContainer"
+      className="authContainer normalBackground"
       isProtected={false}
       headContent={headContent}
     >

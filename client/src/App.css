@@ -111,7 +111,7 @@
 footer {
   padding: 10px 10%;
   color: white;
-  background-color: #003559;
+  background-color: navy;
   text-align: center;
   display: flex;
   align-items: center;
@@ -121,6 +121,11 @@ footer {
 footer img {
   width: 40px;
 }
+
+.normalBackground {
+  background: linear-gradient(to bottom, cyan, navy );
+}
+
 
 @keyframes slideInRight {
   0% {
