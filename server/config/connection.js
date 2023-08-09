@@ -1,7 +1,9 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
+console.log(process.env.MONGODB_URI);
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/flotsam"
+  "mongodb+srv://noemicouch:12345678Noemi@cluster0.a0j1vlm.mongodb.net/?retryWrites=true&w=majority"
+  // process.env.MONGODB_URI //|| "mongodb://127.0.0.1:27017/flotsam"
 );
 
-export default mongoose.connection
+export default mongoose.connection;
