@@ -27,6 +27,9 @@ app.use(graphqlUploadExpress());
 const __dirname = path.resolve()
 
 if (process.env.NODE_ENV === 'production') {
+
+  console.log(__dirname);
+
   app.use(express.static(path.join(__dirname, '../client/build')));
 
   app.get('*', (req, res) => {
