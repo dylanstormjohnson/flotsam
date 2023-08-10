@@ -1,10 +1,10 @@
-import db from "../config/connection.js";
-import { User, Story, StorySlide, StoryOption } from "../models/index.js";
+const db =  require("../config/connection.js")
+const { User, Story, StorySlide, StoryOption } =  require("../models/index.js")
 
-import userData from "./userData.json" assert { type: "json" };
-import storyData from "./storyData.json" assert { type: "json" };
-import storySlideData from "./storySlideData.json" assert { type: "json" };
-import storyOptionData from "./storyOptionData.json" assert { type: "json" };
+const userData =  require("./userData.json")
+const storyData =  require("./storyData.json")
+const storySlideData =  require("./storySlideData.json")
+const storyOptionData =  require("./storyOptionData.json")
 
 db.once("open", async () => {
   // clean database
