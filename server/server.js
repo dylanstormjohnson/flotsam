@@ -25,10 +25,6 @@ app.use(express.json());
 app.use(graphqlUploadExpress());
 
 if (process.env.NODE_ENV === 'production') {
-
-  console.log(path.join(__dirname, "../client/build"));
-  console.log(path.join(__dirname, "../client/build/index.html"));
-
   app.use(express.static(path.join(__dirname, '../client/build')));
 
   app.get('*', (req, res) => {
