@@ -1,7 +1,7 @@
-import User from "./User.js";
-import Story from "./Story.js";
-import StorySlide from "./StorySlide.js";
-import StoryOption from "./StoryOption.js";
-import PlayedStory from "./PlayedStory.js";
+const User = require("./User.js");
+const Story = require("./Story.js");
+const StorySlide = require("./StorySlide.js");
+const StoryOption = require("./StoryOption.js");
+const PlayedStory = require("./PlayedStory.js");
 
-export { User, Story, StorySlide, StoryOption, PlayedStory };
+module.exports = { User, Story, StorySlide, StoryOption, PlayedStory };

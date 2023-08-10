@@ -1,4 +1,4 @@
-import { GraphQLScalarType, Kind } from 'graphql'
+const { GraphQLScalarType, Kind } = require('graphql');
 
 const dateScalar = new GraphQLScalarType({
   name: 'Date',
@@ -25,6 +25,6 @@ const dateScalar = new GraphQLScalarType({
   },
 });
 
-export {
+module.exports = {
   dateScalar
 }

@@ -1,23 +1,26 @@
-import {
+const {
   User,
   Story,
   PlayedStory,
   StorySlide,
   StoryOption,
-} from "../models/index.js";
+} = require("../models/index.js");
 
-import { signToken } from "../utils/auth.js";
-import { AuthenticationError, UserInputError } from "apollo-server-express";
-import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs";
-import fs from "fs";
-import path from "path";
-import crypto from "crypto";
+const { signToken } = require("../utils/auth.js");
+const {
+  AuthenticationError,
+  UserInputError,
+} = require("apollo-server-express");
+// const GraphQLUpload = require("graphql-upload/GraphQLUpload.mjs");
+const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
 
-import { dateScalar } from "./scalar.js";
+const { dateScalar } = require("./scalar.js");
 
 const resolvers = {
   Date: dateScalar,
-  Upload: GraphQLUpload,
+  // Upload: GraphQLUpload,
   Query: {
     me: async (parent, args, context) => {
       if (!context.user) {
@@ -175,49 +178,51 @@ const resolvers = {
       }
     },
     singleUpload: async function (parent, { file, id }) {
-      const { createReadStream, filename, encoding, mimetype } = await file;
-      const stream = createReadStream();
-      const __dirname = path.resolve();
-      const dirPath = "../client/src/assets/images/profileUploads";
+      throw new UserInputError("Image uploading does not work");
 
-      fs.mkdirSync(path.join(__dirname, dirPath), { recursive: true });
+      // const { createReadStream, filename, encoding, mimetype } = await file;
+      // const stream = createReadStream();
+      // const __dirname = path.resolve();
+      // const dirPath = "../client/src/assets/images/profileUploads";
 
-      const f_name = `${id}.${filename.split(".")[1]}`;
-      const filePath = path.join(__dirname, dirPath, f_name);
+      // fs.mkdirSync(path.join(__dirname, dirPath), { recursive: true });
 
-      // default directory is the current directory
+      // const f_name = `${id}.${filename.split(".")[1]}`;
+      // const filePath = path.join(__dirname, dirPath, f_name);
 
-      const output = fs.createWriteStream(filePath);
+      // // default directory is the current directory
 
-      stream.pipe(output);
+      // const output = fs.createWriteStream(filePath);
 
-      await new Promise(function (resolve, reject) {
-        output.on("close", () => {
-          console.log("File uploaded");
-          resolve();
-        });
+      // stream.pipe(output);
 
-        output.on("error", (err) => {
-          console.log(err);
-          reject(err);
-        });
-      });
+      // await new Promise(function (resolve, reject) {
+      //   output.on("close", () => {
+      //     console.log("File uploaded");
+      //     resolve();
+      //   });
 
-      // find user
-      const user = await User.findById(id);
-      if (user) {
-        user.profilePhoto = f_name;
+      //   output.on("error", (err) => {
+      //     console.log(err);
+      //     reject(err);
+      //   });
+      // });
 
-        const updatedUser = await user.save();
+      // // find user
+      // const user = await User.findById(id);
+      // if (user) {
+      //   user.profilePhoto = f_name;
 
-        const token = signToken(updatedUser);
+      //   const updatedUser = await user.save();
 
-        return { token, user: updatedUser };
-      } else {
-        throw new AuthenticationError("User not found");
-      }
+      //   const token = signToken(updatedUser);
+
+      //   return { token, user: updatedUser };
+      // } else {
+      //   throw new AuthenticationError("User not found");
+      // }
     },
   },
 };
 
-export default resolvers;
+module.exports = resolvers;

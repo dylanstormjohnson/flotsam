@@ -1,5 +1,5 @@
-import bcrypt from "bcrypt"
-import {Schema, model} from "mongoose"
+const bcrypt = require("bcrypt");
+const {Schema, model} = require("mongoose");
 
 const storySlideSchema = new Schema(
   {
@@ -45,4 +45,4 @@ const storySlideSchema = new Schema(
 
 const StorySlide = model("StorySlide", storySlideSchema);
 
-export default StorySlide;
+module.exports = StorySlide;

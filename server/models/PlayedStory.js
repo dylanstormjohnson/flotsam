@@ -1,5 +1,5 @@
-import bcrypt from "bcrypt";
-import { Schema, model } from "mongoose";
+const bcrypt = require("bcrypt");
+const { Schema, model } = require("mongoose");
 
 const playedStorySchema = new Schema(
   {
@@ -34,4 +34,4 @@ const playedStorySchema = new Schema(
 
 const PlayedStory = model("PlayedStory", playedStorySchema);
 
-export default PlayedStory;
+module.exports = PlayedStory;

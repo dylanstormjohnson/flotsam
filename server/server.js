@@ -1,15 +1,17 @@
-import express from 'express'
-import path from 'path'
-import { ApolloServer } from 'apollo-server-express'
-import graphqlUploadExpress from "graphql-upload/graphqlUploadExpress.mjs";
-import dotenv from 'dotenv';
+const express = require('express');
+
+// import path from 'path'
+const path = require('path');
+const { ApolloServer } = require('apollo-server-express');
+// const graphqlUploadExpress = require("graphql-upload/graphqlUploadExpress.mjs");
+const dotenv = require('dotenv');
 dotenv.config();
 
 // Import the two parts of a GraphQL schema
-import { typeDefs, resolvers } from './schemas/index.js'
-import { authMiddleware } from './utils/auth.js'
+const { typeDefs, resolvers } = require('./schemas/index.js')
+const { authMiddleware } = require('./utils/auth.js')
 
-import db from './config/connection.js'
+const db = require('./config/connection.js')
 
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
@@ -22,7 +24,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(graphqlUploadExpress());
+// app.use(graphqlUploadExpress());
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
