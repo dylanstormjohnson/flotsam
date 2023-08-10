@@ -28,7 +28,8 @@ const __dirname = path.resolve()
 
 if (process.env.NODE_ENV === 'production') {
 
-  console.log(__dirname);
+  console.log(path.join(__dirname, "../client/build"));
+  console.log(path.join(__dirname, "../client/build/index.html"));
 
   app.use(express.static(path.join(__dirname, '../client/build')));
 
