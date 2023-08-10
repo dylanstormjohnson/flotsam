@@ -24,8 +24,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(graphqlUploadExpress());
 
-const __dirname = path.resolve()
-
 if (process.env.NODE_ENV === 'production') {
 
   console.log(path.join(__dirname, "../client/build"));
